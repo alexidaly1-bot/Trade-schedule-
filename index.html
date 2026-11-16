@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16131a">
+<meta name="robots" content="noindex, nofollow">
+<title>Trade Schedule</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trades">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>Trades</h1>
+  <nav class="tabs" role="tablist">
+    <button data-view="schedule" class="on">Schedule</button>
+    <button data-view="trades">Guys</button>
+    <button data-view="add" class="add">+ Add</button>
+  </nav>
+  <div class="top-tools">
+    <button id="discreetBtn" class="icon" title="Blur photos" aria-label="Blur photos">🙈</button>
+    <button id="menuBtn" class="icon" title="Backup" aria-label="Backup and settings">⋯</button>
+  </div>
+</header>
+
+<main>
+  <!-- SCHEDULE -->
+  <section id="view-schedule" class="view on">
+    <div class="cal-bar">
+      <button id="prevBtn" class="icon" aria-label="Back">‹</button>
+      <button id="todayBtn" class="pill">Today</button>
+      <button id="nextBtn" class="icon" aria-label="Forward">›</button>
+      <strong id="rangeLabel"></strong>
+    </div>
+    <div class="sched">
+      <aside class="tray" id="tray">
+        <div class="tray-head">
+          <b>To book</b>
+          <label class="small"><input type="checkbox" id="trayAll"> all</label>
+        </div>
+        <p class="hint">Hold &amp; drag a guy onto a time.</p>
+        <div id="trayList" class="tray-list"></div>
+      </aside>
+      <div class="cal" id="cal">
+        <div class="cal-head" id="calHead"></div>
+        <div class="cal-scroll" id="calScroll">
+          <div class="cal-body" id="calBody"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRADES -->
+  <section id="view-trades" class="view">
+    <input id="search" class="search" type="search" placeholder="Search name, suburb, notes…">
+    <div id="tradeGrid" class="grid"></div>
+  </section>
+
+  <!-- ADD -->
+  <section id="view-add" class="view">
+    <div class="add-wrap">
+      <h2 id="addTitle">Add a guy</h2>
+      <p class="hint">Drop in screenshots of his profile or chat, and/or paste text. The app reads them and fills in his profile.</p>
+      <label class="drop" id="drop">
+        <input type="file" id="fileIn" accept="image/*" multiple hidden>
+        <span class="big">📸</span>
+        <span><b>Tap to pick screenshots</b><br><span class="small">or drag them here, or paste (Ctrl/⌘+V)</span></span>
+      </label>
+      <div id="shotPreview" class="thumbs"></div>
+      <textarea id="pasteIn" rows="6" placeholder="Paste chat or profile text here…"></textarea>
+      <div class="row">
+        <button id="readBtn" class="primary">Read &amp; build profile</button>
+        <button id="clearAddBtn">Clear</button>
+      </div>
+      <div id="progress" class="progress" hidden><div></div><span></span></div>
+      <div id="review"></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="modal"><div id="modalBody"></div></dialog>
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
