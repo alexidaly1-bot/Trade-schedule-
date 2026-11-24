@@ -15,6 +15,14 @@ Install it from the browser ("Add to Home Screen") on iPhone/Android, or "Instal
 
 Tests: `npm test` (scheduling, prep, clash, sharing privacy, screenshot reading).
 
+## Put it online (free, GitHub Pages)
+
+1. Merge this PR into `main`.
+2. Repo **Settings → Pages → Source: GitHub Actions**.
+3. The workflow tests and publishes to `https://alexidaly1-bot.github.io/Trade-schedule-/`.
+
+Install on a phone: open that link → iPhone Safari **Share → Add to Home Screen**; Android Chrome **⋮ → Install app**. Works offline after the first open.
+
 ## How it works
 
 - **Everything stays on the device.** Records in localStorage, images in IndexedDB. No server, no account.

@@ -1,6 +1,6 @@
 // Offline cache for the app shell. No data is ever sent anywhere.
-const CACHE = 'bm-shell-v1';
-const SHELL = ['./', './index.html', './styles.css', './manifest.webmanifest', './icon.svg', './js/app.js', './js/logic.js', './js/store.js', './js/avatar.js', './js/ocr.js'];
+const CACHE = 'bm-shell-v2';
+const SHELL = ['./', './index.html', './styles.css', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './js/app.js', './js/logic.js', './js/store.js', './js/avatar.js', './js/ocr.js'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
