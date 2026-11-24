@@ -1,0 +1,70 @@
+role,page,can_open
+"Me (owner)","Home",true
+"Me (owner)","Add from screenshots",true
+"Me (owner)","Check what was found",true
+"Me (owner)","Roster",true
+"Me (owner)","Plan a meet-up",true
+"Me (owner)","Meet-up",true
+"Me (owner)","People",true
+"Me (owner)","Person",true
+"Me (owner)","I'm good to go",false
+"Me (owner)","Ready!",true
+"Me (owner)","My availability",true
+"Me (owner)","Share my availability",true
+"Me (owner)","Shared availability",false
+"Me (owner)","Settings",true
+"Me (owner)","All set",true
+"Me (owner)","Something went wrong",true
+"Me (owner)","Photo album",true
+"Me (owner)","Avatar maker",true
+"Me (owner)","Custom feature",true
+"Me (owner)","Insights",true
+"Me (owner)","Appearance",true
+"Me (owner)","Plan several",true
+"Me (owner)","Partner routine",true
+"Partner","Home",false
+"Partner","Add from screenshots",false
+"Partner","Check what was found",false
+"Partner","Roster",false
+"Partner","Plan a meet-up",false
+"Partner","Meet-up",false
+"Partner","People",false
+"Partner","Person",false
+"Partner","I'm good to go",true
+"Partner","Ready!",false
+"Partner","My availability",false
+"Partner","Share my availability",false
+"Partner","Shared availability",true
+"Partner","Settings",false
+"Partner","All set",true
+"Partner","Something went wrong",true
+"Partner","Photo album",false
+"Partner","Avatar maker",false
+"Partner","Custom feature",false
+"Partner","Insights",false
+"Partner","Appearance",false
+"Partner","Plan several",false
+"Partner","Partner routine",false
+"Shared viewer","Home",false
+"Shared viewer","Add from screenshots",false
+"Shared viewer","Check what was found",false
+"Shared viewer","Roster",false
+"Shared viewer","Plan a meet-up",false
+"Shared viewer","Meet-up",false
+"Shared viewer","People",false
+"Shared viewer","Person",false
+"Shared viewer","I'm good to go",false
+"Shared viewer","Ready!",false
+"Shared viewer","My availability",false
+"Shared viewer","Share my availability",false
+"Shared viewer","Shared availability",true
+"Shared viewer","Settings",false
+"Shared viewer","All set",true
+"Shared viewer","Something went wrong",true
+"Shared viewer","Photo album",false
+"Shared viewer","Avatar maker",false
+"Shared viewer","Custom feature",false
+"Shared viewer","Insights",false
+"Shared viewer","Appearance",false
+"Shared viewer","Plan several",false
+"Shared viewer","Partner routine",false

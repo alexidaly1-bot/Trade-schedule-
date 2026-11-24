@@ -1,0 +1,9 @@
+{
+  "name": "App colours",
+  "color": {
+    "primary": {
+      "$type": "color",
+      "$value": "#E2805F"
+    }
+  }
+}
