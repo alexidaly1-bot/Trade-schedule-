@@ -1,0 +1,155 @@
+ID,Kind,Name,Module,Status,Type,On page,Goes to,Link type
+pag_qiebee2vk,Page,Home,Home,In progress,Home / dashboard,,,
+pag_qiebee2vk_e0,Element,Today's roster,Home,,Section,Home,Meet-up,Read data
+pag_qiebee2vk_e1,Element,Add from screenshots,Home,,Button,Home,Add from screenshots,Go to page
+pag_qiebee2vk_e2,Element,Roster,Home,,Tab,Home,Roster,Go to page
+pag_qiebee2vk_e3,Element,People,Home,,Tab,Home,People,Go to page
+pag_qiebee2vk_e4,Element,Partner ready check,Home,,List item,Home,Is my partner good to go?,Run function
+pag_qiebee2vk_e5,Element,My availability,Home,,Tab,Home,My availability,Go to page
+pag_qiebee2vk_e6,Element,Share my availability,Home,,Button,Home,Share my availability,Go to page
+pag_qiebee2vk_e7,Element,Settings,Home,,Button,Home,Settings,Go to page
+el_yx9j0kuj0,Element,Partner routine,Home,,Button,Home,Partner routine,Go to page
+pg_import,Page,Add from screenshots,Screenshot import,New,Form,,,
+pg_import_e0,Element,Pick screenshots,Screenshot import,,Button,Add from screenshots,Read screenshots,Run function
+pg_import_e1,Element,Paste text,Screenshot import,,Text field,Add from screenshots,,
+pg_import_e2,Element,Read them,Screenshot import,,Button,Add from screenshots,Read screenshots,Run function
+pg_review,Page,Check what was found,Screenshot import,New,Form,,Screenshot details,
+pg_review_e0,Element,Person,Screenshot import,,Dropdown,Check what was found,Person,Read data
+pg_review_e1,Element,Date and time,Screenshot import,,Text field,Check what was found,,
+pg_review_e2,Element,Place,Screenshot import,,Text field,Check what was found,,
+pg_review_e3,Element,Notes about them,Screenshot import,,Text field,Check what was found,,
+pg_review_e4,Element,Save to roster,Screenshot import,,Button,Check what was found,Save meet-up,Run function
+pg_review_e5,Element,Discard,Screenshot import,,Button,Check what was found,Home,Go back
+el_wgck0ns8e,Element,Save profile,Screenshot import,,Button,Check what was found,Build profile,Run function
+pg_roster,Page,Roster,Roster,New,List,,,
+pg_roster_e0,Element,This week,Roster,,Section,Roster,Meet-up,Read data
+pg_roster_e1,Element,Meet-up,Roster,,List item,Roster,Meet-up,Go to page
+pg_roster_e2,Element,New meet-up,Roster,,Button,Roster,Plan a meet-up,Go to page
+el_l95fkcisx,Element,Plan several,Roster,,Button,Roster,Plan several,Go to page
+pg_plan,Page,Plan a meet-up,Roster,New,Form,,,
+pg_plan_e0,Element,Who,Roster,,Dropdown,Plan a meet-up,Person,Read data
+pg_plan_e1,Element,When,Roster,,Text field,Plan a meet-up,,
+pg_plan_e2,Element,Where,Roster,,Text field,Plan a meet-up,,
+pg_plan_e3,Element,Prep time needed,Roster,,Text field,Plan a meet-up,,
+pg_plan_e4,Element,Save,Roster,,Button,Plan a meet-up,Save meet-up,Run function
+pg_meet,Page,Meet-up,Roster,New,Detail,,,
+pg_meet_e0,Element,Time and place,Roster,,Section,Meet-up,,
+pg_meet_e1,Element,Prep plan (only me),Roster,,Section,Meet-up,Meet-up,Read data
+pg_meet_e2,Element,Partner ready?,Roster,,Section,Meet-up,Ready status,Read data
+pg_meet_e3,Element,Reschedule,Roster,,Button,Meet-up,Find the next free slot,Run function
+pg_meet_e4,Element,Cancel,Roster,,Button,Meet-up,Cancel meet-up,Run function
+pg_people,Page,People,People,New,List,,,
+pg_people_e0,Element,Person,People,,List item,People,Person,Go to page
+pg_people_e1,Element,Add person,People,,Button,People,Person,Go to page
+el_lurzevs8e,Element,Insights,People,,Button,People,Insights,Go to page
+pg_person,Page,Person,People,New,Profile,,,
+pg_person_e0,Element,Nickname,People,,Text field,Person,,
+pg_person_e1,Element,Relationship,People,,Dropdown,Person,,
+pg_person_e2,Element,What I know about them,People,,Text field,Person,,
+pg_person_e3,Element,Usual prep time,People,,Text field,Person,,
+pg_person_e4,Element,Plan a meet-up,People,,Button,Person,Plan a meet-up,Go to page
+pg_person_e5,Element,Send them a link,People,,Button,Person,Create share link,Run function
+el_tsy88es8e,Element,Photo album,People,,Button,Person,Photo album,Go to page
+el_yyk7z9s8e,Element,Avatar,People,,Button,Person,Avatar maker,Go to page
+el_11zs58s8e,Element,Suggest a nickname,People,,Button,Person,Suggest a nickname,Run function
+el_lmoy4xs8e,Element,Features by category,People,,Section,Person,,
+pg_goodtogo,Page,I'm good to go,Ready check,New,Custom,,,
+pg_goodtogo_e0,Element,I'm good to go,Ready check,,Toggle switch,I'm good to go,Set ready status,Run function
+pg_goodtogo_e1,Element,Ready for how long?,Ready check,,Dropdown,I'm good to go,,
+pg_goodtogo_e2,Element,Not today,Ready check,,Button,I'm good to go,Set ready status,Run function
+pg_ready,Page,Ready!,Ready check,New,Confirmation,,,
+pg_ready_e0,Element,Open roster,Ready check,,Button,Ready!,Roster,Go to page
+pg_avail,Page,My availability,Availability & sharing,New,List,,,
+pg_avail_e0,Element,Free times,Availability & sharing,,Section,My availability,Free time,Read data
+pg_avail_e1,Element,Add free time,Availability & sharing,,Button,My availability,Save free time,Run function
+pg_avail_e2,Element,Default prep time,Availability & sharing,,Text field,My availability,Default prep time,Change setting
+pg_avail_e3,Element,Share my availability,Availability & sharing,,Button,My availability,Share my availability,Go to page
+pg_share,Page,Share my availability,Availability & sharing,New,Settings,,,
+pg_share_e0,Element,Who can see it,Availability & sharing,,Dropdown,Share my availability,,
+pg_share_e1,Element,Create link,Availability & sharing,,Button,Share my availability,Create share link,Run function
+pg_share_e2,Element,Stop sharing,Availability & sharing,,Button,Share my availability,Stop sharing,Run function
+pg_sharedview,Page,Shared availability,Availability & sharing,New,List,,,
+pg_sharedview_e0,Element,Free slot,Availability & sharing,,List item,Shared availability,Request a time,Run function
+el_t5epr8t7k,Element,Free times,Availability & sharing,,Section,Shared availability,Free time,Read data
+pg_settings,Page,Settings,Settings,New,Settings,,,
+pg_settings_e0,Element,App lock,Settings,,Toggle switch,Settings,App lock,Change setting
+pg_settings_e1,Element,Discreet alerts,Settings,,Toggle switch,Settings,Discreet alerts,Change setting
+pg_settings_e2,Element,Hide private details when sharing,Settings,,Toggle switch,Settings,Hide private details when sharing,Change setting
+pg_settings_e3,Element,Health check reminders,Settings,,Toggle switch,Settings,Health check reminders,Change setting
+pg_settings_e4,Element,Back to home,Settings,,Button,Settings,Home,Go back
+el_l46y6adry,Element,Appearance,Settings,,Button,Settings,Appearance,Go to page
+pg_done,Page,All set,Shared,New,Confirmation,,,
+pg_done_e0,Element,Back to roster,Shared,,Button,All set,Roster,Go to page
+pg_oops,Page,Something went wrong,Shared,New,Error,,,
+pg_oops_e0,Element,Try again,Shared,,Button,Something went wrong,Home,Go back
+fn_read,Function,Read screenshots,Screenshot import,New,,,Screenshot details; Check what was found; Something went wrong,
+fn_savemeet,Function,Save meet-up,Roster,New,,,Default prep time; Enough prep time before it?; Meet-up; Something went wrong; Remind me to start prep,
+fn_nextslot,Function,Find the next free slot,Roster,New,,,Free time; Plan a meet-up,
+fn_cancel,Function,Cancel meet-up,Roster,New,,,Meet-up; Send discreet alert,
+fn_savefree,Function,Save free time,Availability & sharing,New,,,Free time,
+fn_sharelink,Function,Create share link,Availability & sharing,New,,,Share link; Hide private details when sharing; Shared availability; I'm good to go,
+fn_stopshare,Function,Stop sharing,Availability & sharing,New,,,Share link,
+fn_request,Function,Request a time,Availability & sharing,New,,,Send discreet alert; All set,
+fn_setready,Function,Set ready status,Ready check,New,,,Ready status; Send discreet alert,
+fn_alert,Function,Send discreet alert,Shared,New,,,Discreet alerts,
+dec_prep,Decision,Enough prep time before it?,Roster,New,,,Meet-up; All set; Find the next free slot,
+dec_ready,Decision,Is my partner good to go?,Ready check,New,,,Ready status; Ready!; Roster,
+set_lock,Setting,App lock,Settings,New,On / off,,,
+set_discreet,Setting,Discreet alerts,Settings,New,On / off,,,
+set_hide,Setting,Hide private details when sharing,Settings,New,On / off,,,
+set_prep,Setting,Default prep time,Settings,New,Number,,,
+set_health,Setting,Health check reminders,Settings,New,On / off,,,
+dt_shot,Data,Screenshot details,Screenshot import,New,,,,
+dt_meet,Data,Meet-up,Roster,New,,,,
+dt_person,Data,Person,People,New,,,,
+dt_ready,Data,Ready status,Ready check,New,,,,
+dt_free,Data,Free time,Availability & sharing,New,,,,
+dt_link,Data,Share link,Availability & sharing,New,,,,
+set_ymaahns8e,Setting,Allow AI avatar help,Avatar studio,New,On / off,,,
+set_ij06o1s8e,Setting,Keep profiles on this device only,People,New,On / off,,,
+dat_rer494s8e,Data,Profile album,People,New,,,,
+dat_b3qlpus8e,Data,Person feature,People,New,,,,
+dat_gzkej1s8e,Data,Avatar,Avatar studio,New,,,,
+dat_3ybseos8e,Data,Feature template,Avatar studio,New,,,,
+fun_flkwc1s8e,Function,Build profile,People,New,,,Sort features into categories; Person; Profile album; Person feature; Keep profiles on this device only; All set; Something went wrong,
+fun_mzsdlss8e,Function,Sort features into categories,People,New,,,Person feature,
+fun_d1v65fs8e,Function,Suggest a nickname,People,New,,,Person feature; Person,
+fun_oiauuns8e,Function,Cover private areas,Avatar studio,New,,,Safe to send to AI?,
+dec_ql9i2rs8e,Decision,Safe to send to AI?,Avatar studio,New,,,Allow AI avatar help; Make cartoon avatar; Avatar maker,
+fun_p1z2gjs8e,Function,Make cartoon avatar,Avatar studio,New,,,Avatar; Avatar maker; Something went wrong; Cartoon avatar style,
+fun_wy5wifs8e,Function,Add custom feature,Avatar studio,New,,,Feature template; Avatar,
+pag_8wdsi3s8e,Page,Photo album,People,New,Media gallery,,Profile album,
+el_immngbs8e,Element,Images,People,,Section,Photo album,,
+el_a4sh7zs8e,Element,Make avatar,People,,Button,Photo album,Avatar maker,Go to page
+pag_vxvzpas8e,Page,Avatar maker,Avatar studio,New,Custom,,,
+el_gp13p4s8e,Element,Draw features,Avatar studio,,Section,Avatar maker,,
+el_6raim8s8e,Element,Describe features,Avatar studio,,Text field,Avatar maker,,
+el_gbyma6s8e,Element,Use covered photos,Avatar studio,,Button,Avatar maker,Cover private areas,Run function
+el_ch5bhbs8e,Element,Ask AI for a custom feature,Avatar studio,,Button,Avatar maker,Custom feature,Go to page
+el_mevshjs8e,Element,Save avatar,Avatar studio,,Button,Avatar maker,Avatar,Save data
+el_6e7edkdry,Element,Upload photos (permission required),Avatar studio,,Button,Avatar maker,Cover private areas,Run function
+pag_0rqyaus8e,Page,Custom feature,Avatar studio,New,Form,,,
+el_6fxhs8s8e,Element,Describe the feature,Avatar studio,,Text field,Custom feature,,
+el_kzk15ms8e,Element,Save for,Avatar studio,,Dropdown,Custom feature,,
+el_4tcyc8s8e,Element,Create it,Avatar studio,,Button,Custom feature,Add custom feature,Run function
+pag_43144as8e,Page,Insights,People,New,List,,Person feature,
+el_niekets8e,Element,Pick an attribute,People,,Dropdown,Insights,,
+el_j7p7d4s8e,Element,Results,People,,Section,Insights,,
+set_lw0yfldry,Setting,App theme,Settings,New,Choice,,,
+set_b6zvqudry,Setting,Cartoon avatar style,Settings,New,Choice,,,
+pag_gsdilvdry,Page,Appearance,Settings,New,Settings,,,
+el_ymout1dry,Element,App theme,Settings,,Dropdown,Appearance,App theme,Change setting
+el_djg4isdry,Element,Theme previews,Settings,,Section,Appearance,,
+el_zwxitxdry,Element,Cartoon avatar style,Settings,,Dropdown,Appearance,Cartoon avatar style,Change setting
+fun_vzg30wisx,Function,Plan several meet-ups,Roster,New,,,Free time; Default prep time; Meet-up; All set; Something went wrong,
+pag_c9lr3pisx,Page,Plan several,Roster,New,Form,,,
+el_l597puisx,Element,Who to fit in,Roster,,Text field,Plan several,,
+el_9hl60eisx,Element,How many,Roster,,Text field,Plan several,,
+el_byr6h7isx,Element,Suggest a plan,Roster,,Button,Plan several,Plan several meet-ups,Run function
+dat_sscj28uj0,Data,Partner routine,Ready check,New,,,,
+fun_7twf5euj0,Function,Save partner routine,Ready check,New,,,Partner routine; Default prep time; Free time; All set; Something went wrong; Remind me to start prep,
+pag_eznhi9uj0,Page,Partner routine,Ready check,New,Form,,,
+el_mrf56cuj0,Element,Days and times,Ready check,,Text field,Partner routine,,
+el_23qfs3uj0,Element,Repeats,Ready check,,Dropdown,Partner routine,,
+el_e7livduj0,Element,Save routine,Ready check,,Button,Partner routine,Save partner routine,Run function
+fun_kri6r0mn2,Function,Remind me to start prep,Roster,New,,,Meet-up; Partner routine; Send discreet alert,

@@ -1,0 +1,3855 @@
+{
+  "schema": 1,
+  "format": "flowmate-project",
+  "id": "prj_8st7ck2vj",
+  "name": "ButtMate",
+  "description": "Help me design a system that can schedule and create a “roster” by extracting context, facts, times and personality/attribute‑specific information from screenshots. The system should organise and plan meet‑ups with ongoing sexual partners, manage the sexual schedule of a monogamous relationship (including a “I’m good to go” button that indicates a receptive gay partner is douched and cleaned), and make “spontaneous” sex cleaner and easier without the need for “dirty prep talk”. It should also be able to schedule a fleet of random one‑night stands by allocating when I’m free and how much prep time is needed (visible only to me), so that flaking because I’m not ready is no longer an issue. The tool should work for personal tracking or allow me to share availability with someone else so they can decide scheduling with ease, without revealing my sexual body count. Include all these features and constraints in the design.",
+  "platforms": [
+    "Android",
+    "iPhone",
+    "Web",
+    "Desktop"
+  ],
+  "createdAt": 1795416429007,
+  "updatedAt": 1795531110628,
+  "rev": 34,
+  "roles": [
+    {
+      "id": "role_me",
+      "name": "Me (owner)"
+    },
+    {
+      "id": "role_partner",
+      "name": "Partner"
+    },
+    {
+      "id": "role_viewer",
+      "name": "Shared viewer"
+    }
+  ],
+  "modules": {
+    "mod_home": {
+      "id": "mod_home",
+      "name": "Home",
+      "colour": "coral",
+      "order": 0
+    },
+    "mod_import": {
+      "id": "mod_import",
+      "name": "Screenshot import",
+      "colour": "gold",
+      "order": 1
+    },
+    "mod_roster": {
+      "id": "mod_roster",
+      "name": "Roster",
+      "colour": "oak",
+      "order": 2
+    },
+    "mod_people": {
+      "id": "mod_people",
+      "name": "People",
+      "colour": "rose",
+      "order": 3
+    },
+    "mod_ready": {
+      "id": "mod_ready",
+      "name": "Ready check",
+      "colour": "sage",
+      "order": 4
+    },
+    "mod_avail": {
+      "id": "mod_avail",
+      "name": "Availability & sharing",
+      "colour": "clay",
+      "order": 5
+    },
+    "mod_settings": {
+      "id": "mod_settings",
+      "name": "Settings",
+      "colour": "sage",
+      "order": 6
+    },
+    "mod_shared": {
+      "id": "mod_shared",
+      "name": "Shared",
+      "colour": "clay",
+      "order": 7
+    },
+    "mod_bs8iqus8e": {
+      "id": "mod_bs8iqus8e",
+      "name": "Avatar studio",
+      "colour": "oak",
+      "order": 8
+    }
+  },
+  "entities": {
+    "pag_qiebee2vk": {
+      "id": "pag_qiebee2vk",
+      "kind": "page",
+      "name": "Home",
+      "desc": "Only I see this. Shows today's plans and prep at a glance.",
+      "status": "In progress",
+      "moduleId": "mod_home",
+      "parentId": null,
+      "x": 0,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Home / dashboard",
+      "elements": [
+        {
+          "id": "pag_qiebee2vk_e0",
+          "label": "Today's roster",
+          "type": "section"
+        },
+        {
+          "id": "pag_qiebee2vk_e1",
+          "label": "Add from screenshots",
+          "type": "button"
+        },
+        {
+          "id": "pag_qiebee2vk_e2",
+          "label": "Roster",
+          "type": "tab"
+        },
+        {
+          "id": "pag_qiebee2vk_e3",
+          "label": "People",
+          "type": "tab"
+        },
+        {
+          "id": "pag_qiebee2vk_e4",
+          "label": "Partner ready check",
+          "type": "listitem"
+        },
+        {
+          "id": "pag_qiebee2vk_e5",
+          "label": "My availability",
+          "type": "tab"
+        },
+        {
+          "id": "pag_qiebee2vk_e6",
+          "label": "Share my availability",
+          "type": "button"
+        },
+        {
+          "id": "pag_qiebee2vk_e7",
+          "label": "Settings",
+          "type": "button"
+        },
+        {
+          "id": "el_yx9j0kuj0",
+          "label": "Partner routine",
+          "type": "button"
+        }
+      ],
+      "sx": 0,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_import": {
+      "id": "pg_import",
+      "kind": "page",
+      "name": "Add from screenshots",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_import",
+      "parentId": "pag_qiebee2vk",
+      "x": 488,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Form",
+      "elements": [
+        {
+          "id": "pg_import_e0",
+          "label": "Pick screenshots",
+          "type": "button"
+        },
+        {
+          "id": "pg_import_e1",
+          "label": "Paste text",
+          "type": "input"
+        },
+        {
+          "id": "pg_import_e2",
+          "label": "Read them",
+          "type": "button"
+        }
+      ],
+      "sx": 656,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_review": {
+      "id": "pg_review",
+      "kind": "page",
+      "name": "Check what was found",
+      "desc": "Nothing is saved until I check it.",
+      "status": "New",
+      "moduleId": "mod_import",
+      "parentId": "fn_read",
+      "x": 1324,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Form",
+      "elements": [
+        {
+          "id": "pg_review_e0",
+          "label": "Person",
+          "type": "dropdown"
+        },
+        {
+          "id": "pg_review_e1",
+          "label": "Date and time",
+          "type": "input"
+        },
+        {
+          "id": "pg_review_e2",
+          "label": "Place",
+          "type": "input"
+        },
+        {
+          "id": "pg_review_e3",
+          "label": "Notes about them",
+          "type": "input"
+        },
+        {
+          "id": "pg_review_e4",
+          "label": "Save to roster",
+          "type": "button"
+        },
+        {
+          "id": "pg_review_e5",
+          "label": "Discard",
+          "type": "button"
+        },
+        {
+          "id": "el_wgck0ns8e",
+          "label": "Save profile",
+          "type": "button"
+        }
+      ],
+      "sx": 1242,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_roster": {
+      "id": "pg_roster",
+      "kind": "page",
+      "name": "Roster",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pag_qiebee2vk",
+      "x": 1812,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "List",
+      "elements": [
+        {
+          "id": "pg_roster_e0",
+          "label": "This week",
+          "type": "section"
+        },
+        {
+          "id": "pg_roster_e1",
+          "label": "Meet-up",
+          "type": "listitem"
+        },
+        {
+          "id": "pg_roster_e2",
+          "label": "New meet-up",
+          "type": "button"
+        },
+        {
+          "id": "el_l95fkcisx",
+          "label": "Plan several",
+          "type": "button"
+        }
+      ],
+      "sx": 1898,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_plan": {
+      "id": "pg_plan",
+      "kind": "page",
+      "name": "Plan a meet-up",
+      "desc": "Prep time is only visible to me.",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pg_roster",
+      "x": 2230,
+      "y": 206,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Form",
+      "elements": [
+        {
+          "id": "pg_plan_e0",
+          "label": "Who",
+          "type": "dropdown"
+        },
+        {
+          "id": "pg_plan_e1",
+          "label": "When",
+          "type": "input"
+        },
+        {
+          "id": "pg_plan_e2",
+          "label": "Where",
+          "type": "input"
+        },
+        {
+          "id": "pg_plan_e3",
+          "label": "Prep time needed",
+          "type": "input"
+        },
+        {
+          "id": "pg_plan_e4",
+          "label": "Save",
+          "type": "button"
+        }
+      ],
+      "sx": 2484,
+      "sy": 899,
+      "acceptance": []
+    },
+    "pg_meet": {
+      "id": "pg_meet",
+      "kind": "page",
+      "name": "Meet-up",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pg_roster",
+      "x": 2230,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Detail",
+      "elements": [
+        {
+          "id": "pg_meet_e0",
+          "label": "Time and place",
+          "type": "section"
+        },
+        {
+          "id": "pg_meet_e1",
+          "label": "Prep plan (only me)",
+          "type": "section"
+        },
+        {
+          "id": "pg_meet_e2",
+          "label": "Partner ready?",
+          "type": "section"
+        },
+        {
+          "id": "pg_meet_e3",
+          "label": "Reschedule",
+          "type": "button"
+        },
+        {
+          "id": "pg_meet_e4",
+          "label": "Cancel",
+          "type": "button"
+        }
+      ],
+      "sx": 2484,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_people": {
+      "id": "pg_people",
+      "kind": "page",
+      "name": "People",
+      "desc": "Private list. Never shared, never counted anywhere others can see.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pag_qiebee2vk",
+      "x": 0,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "List",
+      "elements": [
+        {
+          "id": "pg_people_e0",
+          "label": "Person",
+          "type": "listitem"
+        },
+        {
+          "id": "pg_people_e1",
+          "label": "Add person",
+          "type": "button"
+        },
+        {
+          "id": "el_lurzevs8e",
+          "label": "Insights",
+          "type": "button"
+        }
+      ],
+      "sx": 3140,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_person": {
+      "id": "pg_person",
+      "kind": "page",
+      "name": "Person",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pg_people",
+      "x": 418,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Profile",
+      "elements": [
+        {
+          "id": "pg_person_e0",
+          "label": "Nickname",
+          "type": "input"
+        },
+        {
+          "id": "pg_person_e1",
+          "label": "Relationship",
+          "type": "dropdown"
+        },
+        {
+          "id": "pg_person_e2",
+          "label": "What I know about them",
+          "type": "input"
+        },
+        {
+          "id": "pg_person_e3",
+          "label": "Usual prep time",
+          "type": "input"
+        },
+        {
+          "id": "pg_person_e4",
+          "label": "Plan a meet-up",
+          "type": "button"
+        },
+        {
+          "id": "pg_person_e5",
+          "label": "Send them a link",
+          "type": "button"
+        },
+        {
+          "id": "el_tsy88es8e",
+          "label": "Photo album",
+          "type": "button"
+        },
+        {
+          "id": "el_yyk7z9s8e",
+          "label": "Avatar",
+          "type": "button"
+        },
+        {
+          "id": "el_11zs58s8e",
+          "label": "Suggest a nickname",
+          "type": "button"
+        },
+        {
+          "id": "el_lmoy4xs8e",
+          "label": "Features by category",
+          "type": "section"
+        }
+      ],
+      "sx": 3726,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pg_goodtogo": {
+      "id": "pg_goodtogo",
+      "kind": "page",
+      "name": "I'm good to go",
+      "desc": "What my partner sees. One tap replaces the prep talk.",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "fn_sharelink",
+      "x": 2996,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_partner"
+      ],
+      "notes": "",
+      "pageType": "Custom",
+      "elements": [
+        {
+          "id": "pg_goodtogo_e0",
+          "label": "I'm good to go",
+          "type": "toggle"
+        },
+        {
+          "id": "pg_goodtogo_e1",
+          "label": "Ready for how long?",
+          "type": "dropdown"
+        },
+        {
+          "id": "pg_goodtogo_e2",
+          "label": "Not today",
+          "type": "button"
+        }
+      ],
+      "sx": 586,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pg_ready": {
+      "id": "pg_ready",
+      "kind": "page",
+      "name": "Ready!",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "dec_ready",
+      "x": 2578,
+      "y": 1625,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Confirmation",
+      "elements": [
+        {
+          "id": "pg_ready_e0",
+          "label": "Open roster",
+          "type": "button"
+        }
+      ],
+      "sx": 0,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pg_avail": {
+      "id": "pg_avail",
+      "kind": "page",
+      "name": "My availability",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "pag_qiebee2vk",
+      "x": 0,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "List",
+      "elements": [
+        {
+          "id": "pg_avail_e0",
+          "label": "Free times",
+          "type": "section"
+        },
+        {
+          "id": "pg_avail_e1",
+          "label": "Add free time",
+          "type": "button"
+        },
+        {
+          "id": "pg_avail_e2",
+          "label": "Default prep time",
+          "type": "input"
+        },
+        {
+          "id": "pg_avail_e3",
+          "label": "Share my availability",
+          "type": "button"
+        }
+      ],
+      "sx": 1242,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pg_share": {
+      "id": "pg_share",
+      "kind": "page",
+      "name": "Share my availability",
+      "desc": "Shared links show free or busy only.",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "pag_qiebee2vk",
+      "x": 0,
+      "y": 2744,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Settings",
+      "elements": [
+        {
+          "id": "pg_share_e0",
+          "label": "Who can see it",
+          "type": "dropdown"
+        },
+        {
+          "id": "pg_share_e1",
+          "label": "Create link",
+          "type": "button"
+        },
+        {
+          "id": "pg_share_e2",
+          "label": "Stop sharing",
+          "type": "button"
+        }
+      ],
+      "sx": 1242,
+      "sy": 3716,
+      "acceptance": []
+    },
+    "pg_sharedview": {
+      "id": "pg_sharedview",
+      "kind": "page",
+      "name": "Shared availability",
+      "desc": "What others see: free times only. No names, no meet-ups, no totals.",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "fn_sharelink",
+      "x": 836,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_partner",
+        "role_viewer"
+      ],
+      "notes": "",
+      "pageType": "List",
+      "elements": [
+        {
+          "id": "pg_sharedview_e0",
+          "label": "Free slot",
+          "type": "listitem"
+        },
+        {
+          "id": "el_t5epr8t7k",
+          "label": "Free times",
+          "type": "section"
+        }
+      ],
+      "sx": 1828,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pg_settings": {
+      "id": "pg_settings",
+      "kind": "page",
+      "name": "Settings",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pag_qiebee2vk",
+      "x": 1742,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Settings",
+      "elements": [
+        {
+          "id": "pg_settings_e0",
+          "label": "App lock",
+          "type": "toggle"
+        },
+        {
+          "id": "pg_settings_e1",
+          "label": "Discreet alerts",
+          "type": "toggle"
+        },
+        {
+          "id": "pg_settings_e2",
+          "label": "Hide private details when sharing",
+          "type": "toggle"
+        },
+        {
+          "id": "pg_settings_e3",
+          "label": "Health check reminders",
+          "type": "toggle"
+        },
+        {
+          "id": "pg_settings_e4",
+          "label": "Back to home",
+          "type": "button"
+        },
+        {
+          "id": "el_l46y6adry",
+          "label": "Appearance",
+          "type": "button"
+        }
+      ],
+      "sx": 2484,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pg_done": {
+      "id": "pg_done",
+      "kind": "page",
+      "name": "All set",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_shared",
+      "parentId": "dec_prep",
+      "x": 3066,
+      "y": 2744,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "pageType": "Confirmation",
+      "elements": [
+        {
+          "id": "pg_done_e0",
+          "label": "Back to roster",
+          "type": "button"
+        }
+      ],
+      "sx": 3726,
+      "sy": 3763,
+      "acceptance": []
+    },
+    "pg_oops": {
+      "id": "pg_oops",
+      "kind": "page",
+      "name": "Something went wrong",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_shared",
+      "parentId": "fn_read",
+      "x": 3066,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "pageType": "Error",
+      "elements": [
+        {
+          "id": "pg_oops_e0",
+          "label": "Try again",
+          "type": "button"
+        }
+      ],
+      "sx": 3726,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "fn_read": {
+      "id": "fn_read",
+      "kind": "function",
+      "name": "Read screenshots",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_import",
+      "parentId": "pg_import",
+      "x": 906,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Read them",
+      "steps": "Read the text in each screenshot\nFind names, dates, times and places\nPick out details about the person (likes, limits, notes)\nMark anything it is unsure about\nKeep the screenshots on this phone only",
+      "success": "Show what was found",
+      "error": "Show what could not be read",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_savemeet": {
+      "id": "fn_savemeet",
+      "kind": "function",
+      "name": "Save meet-up",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pg_plan",
+      "x": 2648,
+      "y": 506,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Save or Save to roster",
+      "steps": "Check the time is free\nBlock prep time before it (only visible to me)\nSave the meet-up\nAsk the partner to confirm if they have a link",
+      "success": "All set",
+      "error": "Something went wrong",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_nextslot": {
+      "id": "fn_nextslot",
+      "kind": "function",
+      "name": "Find the next free slot",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pg_meet",
+      "x": 2648,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Look at my free times\nAdd my prep time\nSuggest the next slot that fits",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_cancel": {
+      "id": "fn_cancel",
+      "kind": "function",
+      "name": "Cancel meet-up",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pg_meet",
+      "x": 2648,
+      "y": 253,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Mark it cancelled\nFree up the time and the prep block\nSend a discreet heads-up",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_savefree": {
+      "id": "fn_savefree",
+      "kind": "function",
+      "name": "Save free time",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "pg_avail",
+      "x": 418,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Save the free time\nRe-check upcoming meet-ups for clashes",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_sharelink": {
+      "id": "fn_sharelink",
+      "kind": "function",
+      "name": "Create share link",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "pg_share",
+      "x": 418,
+      "y": 2950,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Make a private link\nShow only free or busy times\nNever show names, meet-ups, totals, profiles, albums or avatars",
+      "success": "Copy the link",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_stopshare": {
+      "id": "fn_stopshare",
+      "kind": "function",
+      "name": "Stop sharing",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "pg_share",
+      "x": 418,
+      "y": 3203,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Turn the link off straight away",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_request": {
+      "id": "fn_request",
+      "kind": "function",
+      "name": "Request a time",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "pg_sharedview",
+      "x": 1254,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Send the chosen slot to me\nHold it until I confirm",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_setready": {
+      "id": "fn_setready",
+      "kind": "function",
+      "name": "Set ready status",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "pg_goodtogo",
+      "x": 3414,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "I'm good to go or Not today",
+      "steps": "Save ready or not ready\nSet when it runs out\nTell me quietly",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fn_alert": {
+      "id": "fn_alert",
+      "kind": "function",
+      "name": "Send discreet alert",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_shared",
+      "parentId": "fn_cancel",
+      "x": 3484,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Check the discreet alerts setting\nSend a plain notification like \"Plans updated\"\nNever show details on the lock screen",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "dec_prep": {
+      "id": "dec_prep",
+      "kind": "decision",
+      "name": "Enough prep time before it?",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "fn_savemeet",
+      "x": 3066,
+      "y": 0,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "acceptance": []
+    },
+    "dec_ready": {
+      "id": "dec_ready",
+      "kind": "decision",
+      "name": "Is my partner good to go?",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "pag_qiebee2vk",
+      "x": 2199,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "acceptance": []
+    },
+    "set_lock": {
+      "id": "set_lock",
+      "kind": "setting",
+      "name": "App lock",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pg_settings",
+      "x": 2160,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "appLock",
+      "valueType": "On / off",
+      "defaultValue": "On",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "set_discreet": {
+      "id": "set_discreet",
+      "kind": "setting",
+      "name": "Discreet alerts",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pg_settings",
+      "x": 2160,
+      "y": 2697,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "discreetAlerts",
+      "valueType": "On / off",
+      "defaultValue": "On",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "set_hide": {
+      "id": "set_hide",
+      "kind": "setting",
+      "name": "Hide private details when sharing",
+      "desc": "Shared links never show names, meet-ups or totals.",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pg_settings",
+      "x": 2160,
+      "y": 2950,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "hidePrivateDetails",
+      "valueType": "On / off",
+      "defaultValue": "On",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "set_prep": {
+      "id": "set_prep",
+      "kind": "setting",
+      "name": "Default prep time",
+      "desc": "Minutes. Only visible to me.",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pg_avail",
+      "x": 2160,
+      "y": 3709,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "defaultPrepMinutes",
+      "valueType": "Number",
+      "defaultValue": "60",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "set_health": {
+      "id": "set_health",
+      "kind": "setting",
+      "name": "Health check reminders",
+      "desc": "Optional reminder to book a sexual health check.",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pg_settings",
+      "x": 2160,
+      "y": 3250,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "healthReminders",
+      "valueType": "On / off",
+      "defaultValue": "Off",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "dt_shot": {
+      "id": "dt_shot",
+      "kind": "data",
+      "name": "Screenshot details",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_import",
+      "parentId": "fn_read",
+      "x": 1324,
+      "y": 253,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "image: file (kept on this phone)\nfoundText: text\nfoundPerson: text\nfoundTime: date and time\nsure: yes / unsure",
+      "acceptance": []
+    },
+    "dt_meet": {
+      "id": "dt_meet",
+      "kind": "data",
+      "name": "Meet-up",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "fn_cancel",
+      "x": 1812,
+      "y": 206,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "person: Person\nstarts: date and time\nends: date and time\nplace: text\nprepMinutes: number (only me)\nstatus: Planned / Confirmed / Done / Cancelled",
+      "acceptance": []
+    },
+    "dt_person": {
+      "id": "dt_person",
+      "kind": "data",
+      "name": "Person",
+      "desc": "Private. Never shared or totalled.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "fun_d1v65fs8e",
+      "x": 836,
+      "y": 2131,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "nickname: text\nrelationship: Ongoing / Partner / One-off\nnotes: text (only me)\nusualPrepMinutes: number\nlastSeen: date (only me)\nnicknameStyle: typed / quality / suggested\navatar: Avatar\nsharedWith: none / chosen person",
+      "acceptance": []
+    },
+    "dt_ready": {
+      "id": "dt_ready",
+      "kind": "data",
+      "name": "Ready status",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "dec_ready",
+      "x": 2578,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "person: Person\nready: yes / no\nsetAt: date and time\nexpiresAt: date and time",
+      "acceptance": []
+    },
+    "dt_free": {
+      "id": "dt_free",
+      "kind": "data",
+      "name": "Free time",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "fn_savefree",
+      "x": 418,
+      "y": 2744,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "starts: date and time\nends: date and time\nrepeats: never / weekly",
+      "acceptance": []
+    },
+    "dt_link": {
+      "id": "dt_link",
+      "kind": "data",
+      "name": "Share link",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_avail",
+      "parentId": "fn_sharelink",
+      "x": 836,
+      "y": 2744,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "link: text\nshowsOnly: free / busy\nexpiresOn: date\nforPerson: Person",
+      "acceptance": []
+    },
+    "set_ymaahns8e": {
+      "id": "set_ymaahns8e",
+      "kind": "setting",
+      "name": "Allow AI avatar help",
+      "desc": "Off until I turn it on. Only covered, clothed images are ever sent, and only after I approve each one.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "dec_ql9i2rs8e",
+      "x": 1254,
+      "y": 4116,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "aiAvatarHelp",
+      "valueType": "On / off",
+      "defaultValue": "Off",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "set_ij06o1s8e": {
+      "id": "set_ij06o1s8e",
+      "kind": "setting",
+      "name": "Keep profiles on this device only",
+      "desc": "Profiles, albums and avatars are never stored in the cloud.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "fun_flkwc1s8e",
+      "x": 1672,
+      "y": 1719,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "profilesLocalOnly",
+      "valueType": "On / off",
+      "defaultValue": "On",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "dat_rer494s8e": {
+      "id": "dat_rer494s8e",
+      "kind": "data",
+      "name": "Profile album",
+      "desc": "Only visible to me. Stored on this device only.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pag_8wdsi3s8e",
+      "x": 1254,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "person: Person\nimage: file (kept on this phone)\nfromScreenshot: yes / no\naddedOn: date",
+      "acceptance": []
+    },
+    "dat_b3qlpus8e": {
+      "id": "dat_b3qlpus8e",
+      "kind": "data",
+      "name": "Person feature",
+      "desc": "Only visible to me. Used for my own analysis.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pag_43144as8e",
+      "x": 836,
+      "y": 1878,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "person: Person\ncategory: Age / Demographic / Qualities / Looks / Interests / Other\nvalue: text\nsource: screenshot / typed / AI-suggested\nsure: yes / unsure",
+      "acceptance": []
+    },
+    "dat_gzkej1s8e": {
+      "id": "dat_gzkej1s8e",
+      "kind": "data",
+      "name": "Avatar",
+      "desc": "Only visible to me. Stored on this device only.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "pag_vxvzpas8e",
+      "x": 418,
+      "y": 4622,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "person: Person\npicture: file\nstyle: text\nfeatures: text\nmadeBy: drawn / described / AI",
+      "acceptance": []
+    },
+    "dat_3ybseos8e": {
+      "id": "dat_3ybseos8e",
+      "kind": "data",
+      "name": "Feature template",
+      "desc": "Custom features saved for reuse in future avatars.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "fun_wy5wifs8e",
+      "x": 1254,
+      "y": 4622,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "name: text\ndescription: text\nsavedFor: one person / all avatars",
+      "acceptance": []
+    },
+    "fun_flkwc1s8e": {
+      "id": "fun_flkwc1s8e",
+      "kind": "function",
+      "name": "Build profile",
+      "desc": "Runs on this phone. Only I can open the profile unless I choose to share it.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pg_review",
+      "x": 1254,
+      "y": 1672,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Save profile after checking",
+      "steps": "Match the screenshots to an existing person or start a new one\nTurn what was found into notes (broader profile, qualities, details from messages and images)\nSort each detail into a category\nPut every screenshot image into the person's album\nSave it all on this device only\nOffer a nickname instead of a name",
+      "success": "Profile saved",
+      "error": "Something went wrong",
+      "acceptance": [],
+      "perms": []
+    },
+    "fun_mzsdlss8e": {
+      "id": "fun_mzsdlss8e",
+      "kind": "function",
+      "name": "Sort features into categories",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "fun_flkwc1s8e",
+      "x": 1672,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Read the notes\nTag each detail as age, demographic, quality, looks, interests or other\nMark anything unsure for me to check",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fun_d1v65fs8e": {
+      "id": "fun_d1v65fs8e",
+      "kind": "function",
+      "name": "Suggest a nickname",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pg_person",
+      "x": 836,
+      "y": 1625,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Look at the qualities saved for this person\nSuggest a few nicknames based on them\nI pick one, edit it or keep my own",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "fun_oiauuns8e": {
+      "id": "fun_oiauuns8e",
+      "kind": "function",
+      "name": "Cover private areas",
+      "desc": "Runs on this phone before anything leaves it.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "pag_vxvzpas8e",
+      "x": 418,
+      "y": 4116,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "",
+      "steps": "Scan each photo on the phone\nAdd clothing over any bare or private areas\nRemove faces or details I mark as off limits\nShow me the covered version to approve",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "dec_ql9i2rs8e": {
+      "id": "dec_ql9i2rs8e",
+      "kind": "decision",
+      "name": "Safe to send to AI?",
+      "desc": "Only clothed, covered images from adults go out, and only if I approve and AI help is on.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "fun_oiauuns8e",
+      "x": 875,
+      "y": 4116,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "acceptance": []
+    },
+    "fun_p1z2gjs8e": {
+      "id": "fun_p1z2gjs8e",
+      "kind": "function",
+      "name": "Make cartoon avatar",
+      "desc": "ChatGPT handles the creative side. It gets only approved covered images or my written features.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "dec_ql9i2rs8e",
+      "x": 1254,
+      "y": 4369,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Make avatar",
+      "steps": "Take the approved covered images or the features I described\nUse the global cartoon style\nKeep the person's likeness\nReturn the cartoon and save it to the profile\nNever change the original photos",
+      "success": "Avatar ready",
+      "error": "Show what went wrong",
+      "acceptance": [],
+      "perms": []
+    },
+    "fun_wy5wifs8e": {
+      "id": "fun_wy5wifs8e",
+      "kind": "function",
+      "name": "Add custom feature",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "pag_0rqyaus8e",
+      "x": 836,
+      "y": 4352,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Ask AI for a feature",
+      "steps": "Take my description of the new feature\nAsk the AI to draw it in the avatar style\nShow me the result\nSave it for this person or as a template",
+      "success": "",
+      "error": "",
+      "acceptance": [],
+      "perms": []
+    },
+    "pag_8wdsi3s8e": {
+      "id": "pag_8wdsi3s8e",
+      "kind": "page",
+      "name": "Photo album",
+      "desc": "Only visible to me. All screenshot images for this person.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pg_person",
+      "x": 836,
+      "y": 1419,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Media gallery",
+      "elements": [
+        {
+          "id": "el_immngbs8e",
+          "label": "Images",
+          "type": "section"
+        },
+        {
+          "id": "el_a4sh7zs8e",
+          "label": "Make avatar",
+          "type": "button"
+        }
+      ],
+      "sx": 4312,
+      "sy": 0,
+      "acceptance": []
+    },
+    "pag_vxvzpas8e": {
+      "id": "pag_vxvzpas8e",
+      "kind": "page",
+      "name": "Avatar maker",
+      "desc": "Only visible to me. Draw, describe or let AI simplify covered photos.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "pg_person",
+      "x": 0,
+      "y": 4116,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Custom",
+      "elements": [
+        {
+          "id": "el_gp13p4s8e",
+          "label": "Draw features",
+          "type": "section"
+        },
+        {
+          "id": "el_6raim8s8e",
+          "label": "Describe features",
+          "type": "input"
+        },
+        {
+          "id": "el_gbyma6s8e",
+          "label": "Use covered photos",
+          "type": "button"
+        },
+        {
+          "id": "el_ch5bhbs8e",
+          "label": "Ask AI for a custom feature",
+          "type": "button"
+        },
+        {
+          "id": "el_mevshjs8e",
+          "label": "Save avatar",
+          "type": "button"
+        },
+        {
+          "id": "el_6e7edkdry",
+          "label": "Upload photos (permission required)",
+          "type": "button"
+        }
+      ],
+      "sx": 4382,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pag_0rqyaus8e": {
+      "id": "pag_0rqyaus8e",
+      "kind": "page",
+      "name": "Custom feature",
+      "desc": "Only visible to me.",
+      "status": "New",
+      "moduleId": "mod_bs8iqus8e",
+      "parentId": "pag_vxvzpas8e",
+      "x": 418,
+      "y": 4369,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Form",
+      "elements": [
+        {
+          "id": "el_6fxhs8s8e",
+          "label": "Describe the feature",
+          "type": "input"
+        },
+        {
+          "id": "el_kzk15ms8e",
+          "label": "Save for",
+          "type": "dropdown"
+        },
+        {
+          "id": "el_4tcyc8s8e",
+          "label": "Create it",
+          "type": "button"
+        }
+      ],
+      "sx": 4968,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "pag_43144as8e": {
+      "id": "pag_43144as8e",
+      "kind": "page",
+      "name": "Insights",
+      "desc": "Only visible to me. Shows patterns in the categories I choose. Never shared.",
+      "status": "New",
+      "moduleId": "mod_people",
+      "parentId": "pg_people",
+      "x": 418,
+      "y": 1625,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "List",
+      "elements": [
+        {
+          "id": "el_niekets8e",
+          "label": "Pick an attribute",
+          "type": "dropdown"
+        },
+        {
+          "id": "el_j7p7d4s8e",
+          "label": "Results",
+          "type": "section"
+        }
+      ],
+      "sx": 3726,
+      "sy": 1029,
+      "acceptance": []
+    },
+    "set_lw0yfldry": {
+      "id": "set_lw0yfldry",
+      "kind": "setting",
+      "name": "App theme",
+      "desc": "Midnight Coral or After Hours. Remembered between visits.",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pag_gsdilvdry",
+      "x": 2578,
+      "y": 2491,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "appTheme",
+      "valueType": "Choice",
+      "defaultValue": "Midnight Coral",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "set_b6zvqudry": {
+      "id": "set_b6zvqudry",
+      "kind": "setting",
+      "name": "Cartoon avatar style",
+      "desc": "One of 12 styles used for every saved avatar.",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pag_gsdilvdry",
+      "x": 2578,
+      "y": 2697,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "key": "cartoonAvatarStyle",
+      "valueType": "Choice",
+      "defaultValue": "Original Cartoon",
+      "scope": "Whole app",
+      "acceptance": [],
+      "overrides": []
+    },
+    "pag_gsdilvdry": {
+      "id": "pag_gsdilvdry",
+      "kind": "page",
+      "name": "Appearance",
+      "desc": "Only visible to me.",
+      "status": "New",
+      "moduleId": "mod_settings",
+      "parentId": "pg_settings",
+      "x": 2160,
+      "y": 3503,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Settings",
+      "elements": [
+        {
+          "id": "el_ymout1dry",
+          "label": "App theme",
+          "type": "dropdown"
+        },
+        {
+          "id": "el_djg4isdry",
+          "label": "Theme previews",
+          "type": "section"
+        },
+        {
+          "id": "el_zwxitxdry",
+          "label": "Cartoon avatar style",
+          "type": "dropdown"
+        }
+      ],
+      "sx": 3070,
+      "sy": 2817,
+      "acceptance": []
+    },
+    "fun_vzg30wisx": {
+      "id": "fun_vzg30wisx",
+      "kind": "function",
+      "name": "Plan several meet-ups",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pag_c9lr3pisx",
+      "x": 2648,
+      "y": 759,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Suggest a plan",
+      "steps": "Look at my free times\nFit each meet-up into a free slot\nAdd my prep time before each one (only visible to me)\nLeave gaps so nothing overlaps\nShow me the plan to approve before saving",
+      "success": "All set",
+      "error": "Something went wrong",
+      "acceptance": [],
+      "perms": []
+    },
+    "pag_c9lr3pisx": {
+      "id": "pag_c9lr3pisx",
+      "kind": "page",
+      "name": "Plan several",
+      "desc": "Only visible to me. Prep time is never shown to others.",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "pg_roster",
+      "x": 2230,
+      "y": 459,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Form",
+      "elements": [
+        {
+          "id": "el_l597puisx",
+          "label": "Who to fit in",
+          "type": "input"
+        },
+        {
+          "id": "el_9hl60eisx",
+          "label": "How many",
+          "type": "input"
+        },
+        {
+          "id": "el_byr6h7isx",
+          "label": "Suggest a plan",
+          "type": "button"
+        }
+      ],
+      "acceptance": [],
+      "sx": 2484,
+      "sy": 1798
+    },
+    "dat_sscj28uj0": {
+      "id": "dat_sscj28uj0",
+      "kind": "data",
+      "name": "Partner routine",
+      "desc": "Only visible to me. Repeating times with my partner.",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "fun_7twf5euj0",
+      "x": 2996,
+      "y": 1672,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "fields": "person: Person\ndays: text\nstartTime: date and time\nrepeats: weekly / fortnightly\nprepMinutes: number (only me)",
+      "acceptance": []
+    },
+    "fun_7twf5euj0": {
+      "id": "fun_7twf5euj0",
+      "kind": "function",
+      "name": "Save partner routine",
+      "desc": "",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "pag_eznhi9uj0",
+      "x": 2578,
+      "y": 1831,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Save routine",
+      "steps": "Save the repeating times\nAdd my prep time before each one (only visible to me)\nCheck for clashes with meet-ups and free times\nAsk the partner to confirm if they have a link",
+      "success": "All set",
+      "error": "Something went wrong",
+      "acceptance": [],
+      "perms": []
+    },
+    "pag_eznhi9uj0": {
+      "id": "pag_eznhi9uj0",
+      "kind": "page",
+      "name": "Partner routine",
+      "desc": "Only visible to me. Set repeating times with my partner.",
+      "status": "New",
+      "moduleId": "mod_ready",
+      "parentId": "pag_qiebee2vk",
+      "x": 2160,
+      "y": 1655,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [
+        "role_me"
+      ],
+      "notes": "",
+      "pageType": "Form",
+      "elements": [
+        {
+          "id": "el_mrf56cuj0",
+          "label": "Days and times",
+          "type": "input"
+        },
+        {
+          "id": "el_23qfs3uj0",
+          "label": "Repeats",
+          "type": "dropdown"
+        },
+        {
+          "id": "el_e7livduj0",
+          "label": "Save routine",
+          "type": "button"
+        }
+      ],
+      "acceptance": [],
+      "sx": 0,
+      "sy": 3716
+    },
+    "fun_kri6r0mn2": {
+      "id": "fun_kri6r0mn2",
+      "kind": "function",
+      "name": "Remind me to start prep",
+      "desc": "Only visible to me. Plain wording, never names anyone.",
+      "status": "New",
+      "moduleId": "mod_roster",
+      "parentId": "fun_7twf5euj0",
+      "x": 2648,
+      "y": 1012,
+      "collapsed": false,
+      "view": "structure",
+      "roles": [],
+      "notes": "",
+      "trigger": "Prep start time reached",
+      "steps": "Look at upcoming meet-ups and partner routine times\nWork out when prep needs to start using the prep time\nSend a plain reminder such as 'Time to get ready'\nSkip it if the meet-up was cancelled",
+      "success": "Reminder sent",
+      "error": "Something went wrong",
+      "acceptance": [],
+      "perms": []
+    }
+  },
+  "connections": {
+    "con_a69bakifl": {
+      "id": "con_a69bakifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e1"
+      },
+      "to": "pg_import",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_i0intlifl": {
+      "id": "con_i0intlifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e2"
+      },
+      "to": "pg_roster",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_lq0kaoifl": {
+      "id": "con_lq0kaoifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e3"
+      },
+      "to": "pg_people",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_jvxvmkifl": {
+      "id": "con_jvxvmkifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e4"
+      },
+      "to": "dec_ready",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_xoeq3lifl": {
+      "id": "con_xoeq3lifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e5"
+      },
+      "to": "pg_avail",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_xh003tifl": {
+      "id": "con_xh003tifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e6"
+      },
+      "to": "pg_share",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_f3c496ifl": {
+      "id": "con_f3c496ifl",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e7"
+      },
+      "to": "pg_settings",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_4d4hcqifl": {
+      "id": "con_4d4hcqifl",
+      "from": {
+        "entity": "pg_import",
+        "element": "pg_import_e0"
+      },
+      "to": "fn_read",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_h0058nifl": {
+      "id": "con_h0058nifl",
+      "from": {
+        "entity": "pg_import",
+        "element": "pg_import_e2"
+      },
+      "to": "fn_read",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_03atg4ifl": {
+      "id": "con_03atg4ifl",
+      "from": {
+        "entity": "fn_read",
+        "element": null
+      },
+      "to": "dt_shot",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_90kd7eifl": {
+      "id": "con_90kd7eifl",
+      "from": {
+        "entity": "fn_read",
+        "element": null
+      },
+      "to": "pg_review",
+      "type": "navigate",
+      "label": "Found",
+      "condition": ""
+    },
+    "con_4mfqeoifl": {
+      "id": "con_4mfqeoifl",
+      "from": {
+        "entity": "fn_read",
+        "element": null
+      },
+      "to": "pg_oops",
+      "type": "error",
+      "label": "Unreadable",
+      "condition": ""
+    },
+    "con_qbivmmifl": {
+      "id": "con_qbivmmifl",
+      "from": {
+        "entity": "pg_review",
+        "element": "pg_review_e4"
+      },
+      "to": "fn_savemeet",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_yunpf8ifl": {
+      "id": "con_yunpf8ifl",
+      "from": {
+        "entity": "pg_review",
+        "element": "pg_review_e5"
+      },
+      "to": "pag_qiebee2vk",
+      "type": "back",
+      "label": "",
+      "condition": ""
+    },
+    "con_9wu28jifl": {
+      "id": "con_9wu28jifl",
+      "from": {
+        "entity": "pg_roster",
+        "element": "pg_roster_e1"
+      },
+      "to": "pg_meet",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_klgn35ifl": {
+      "id": "con_klgn35ifl",
+      "from": {
+        "entity": "pg_roster",
+        "element": "pg_roster_e2"
+      },
+      "to": "pg_plan",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_ytlaf1ifl": {
+      "id": "con_ytlaf1ifl",
+      "from": {
+        "entity": "pg_plan",
+        "element": "pg_plan_e4"
+      },
+      "to": "fn_savemeet",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_3p997uifl": {
+      "id": "con_3p997uifl",
+      "from": {
+        "entity": "fn_savemeet",
+        "element": null
+      },
+      "to": "set_prep",
+      "type": "reference",
+      "label": "Reads",
+      "condition": ""
+    },
+    "con_3yrn4qifl": {
+      "id": "con_3yrn4qifl",
+      "from": {
+        "entity": "fn_savemeet",
+        "element": null
+      },
+      "to": "dec_prep",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_3i5lksifl": {
+      "id": "con_3i5lksifl",
+      "from": {
+        "entity": "dec_prep",
+        "element": null
+      },
+      "to": "dt_meet",
+      "type": "reference",
+      "label": "Checks",
+      "condition": ""
+    },
+    "con_to76hcifl": {
+      "id": "con_to76hcifl",
+      "from": {
+        "entity": "dec_prep",
+        "element": null
+      },
+      "to": "pg_done",
+      "type": "condition",
+      "label": "Yes",
+      "condition": ""
+    },
+    "con_u97kw8ifl": {
+      "id": "con_u97kw8ifl",
+      "from": {
+        "entity": "dec_prep",
+        "element": null
+      },
+      "to": "fn_nextslot",
+      "type": "condition",
+      "label": "No",
+      "condition": ""
+    },
+    "con_mtvdp8ifl": {
+      "id": "con_mtvdp8ifl",
+      "from": {
+        "entity": "fn_nextslot",
+        "element": null
+      },
+      "to": "dt_free",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_po0650ifl": {
+      "id": "con_po0650ifl",
+      "from": {
+        "entity": "fn_nextslot",
+        "element": null
+      },
+      "to": "pg_plan",
+      "type": "navigate",
+      "label": "New time",
+      "condition": ""
+    },
+    "con_te5lppifl": {
+      "id": "con_te5lppifl",
+      "from": {
+        "entity": "pg_done",
+        "element": "pg_done_e0"
+      },
+      "to": "pg_roster",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_ifanpiifl": {
+      "id": "con_ifanpiifl",
+      "from": {
+        "entity": "pg_oops",
+        "element": "pg_oops_e0"
+      },
+      "to": "pag_qiebee2vk",
+      "type": "back",
+      "label": "Return",
+      "condition": ""
+    },
+    "con_kwq420ifl": {
+      "id": "con_kwq420ifl",
+      "from": {
+        "entity": "pg_meet",
+        "element": "pg_meet_e3"
+      },
+      "to": "fn_nextslot",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_tghl4cifl": {
+      "id": "con_tghl4cifl",
+      "from": {
+        "entity": "pg_meet",
+        "element": "pg_meet_e4"
+      },
+      "to": "fn_cancel",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_u5lv6uifl": {
+      "id": "con_u5lv6uifl",
+      "from": {
+        "entity": "fn_cancel",
+        "element": null
+      },
+      "to": "dt_meet",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_n7mlisifl": {
+      "id": "con_n7mlisifl",
+      "from": {
+        "entity": "fn_cancel",
+        "element": null
+      },
+      "to": "fn_alert",
+      "type": "notify",
+      "label": "",
+      "condition": ""
+    },
+    "con_fsxbs5ifl": {
+      "id": "con_fsxbs5ifl",
+      "from": {
+        "entity": "pg_people",
+        "element": "pg_people_e0"
+      },
+      "to": "pg_person",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_m5xpskifl": {
+      "id": "con_m5xpskifl",
+      "from": {
+        "entity": "pg_people",
+        "element": "pg_people_e1"
+      },
+      "to": "pg_person",
+      "type": "navigate",
+      "label": "New",
+      "condition": ""
+    },
+    "con_daohczifl": {
+      "id": "con_daohczifl",
+      "from": {
+        "entity": "pg_person",
+        "element": "pg_person_e4"
+      },
+      "to": "pg_plan",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_vwg31hifl": {
+      "id": "con_vwg31hifl",
+      "from": {
+        "entity": "pg_person",
+        "element": "pg_person_e5"
+      },
+      "to": "fn_sharelink",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_xklw1xifl": {
+      "id": "con_xklw1xifl",
+      "from": {
+        "entity": "pg_goodtogo",
+        "element": "pg_goodtogo_e0"
+      },
+      "to": "fn_setready",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_o1ekciifl": {
+      "id": "con_o1ekciifl",
+      "from": {
+        "entity": "pg_goodtogo",
+        "element": "pg_goodtogo_e2"
+      },
+      "to": "fn_setready",
+      "type": "trigger",
+      "label": "Not ready",
+      "condition": ""
+    },
+    "con_s5pqgsifl": {
+      "id": "con_s5pqgsifl",
+      "from": {
+        "entity": "fn_setready",
+        "element": null
+      },
+      "to": "dt_ready",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_8wbfzuifl": {
+      "id": "con_8wbfzuifl",
+      "from": {
+        "entity": "fn_setready",
+        "element": null
+      },
+      "to": "fn_alert",
+      "type": "notify",
+      "label": "",
+      "condition": ""
+    },
+    "con_07v1okifl": {
+      "id": "con_07v1okifl",
+      "from": {
+        "entity": "dec_ready",
+        "element": null
+      },
+      "to": "dt_ready",
+      "type": "reference",
+      "label": "Reads",
+      "condition": ""
+    },
+    "con_wkzsdjifl": {
+      "id": "con_wkzsdjifl",
+      "from": {
+        "entity": "dec_ready",
+        "element": null
+      },
+      "to": "pg_ready",
+      "type": "condition",
+      "label": "Yes",
+      "condition": ""
+    },
+    "con_bs0uh4ifl": {
+      "id": "con_bs0uh4ifl",
+      "from": {
+        "entity": "dec_ready",
+        "element": null
+      },
+      "to": "pg_roster",
+      "type": "condition",
+      "label": "Not yet",
+      "condition": ""
+    },
+    "con_178z7mifl": {
+      "id": "con_178z7mifl",
+      "from": {
+        "entity": "pg_ready",
+        "element": "pg_ready_e0"
+      },
+      "to": "pg_roster",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_f898fcifl": {
+      "id": "con_f898fcifl",
+      "from": {
+        "entity": "pg_avail",
+        "element": "pg_avail_e1"
+      },
+      "to": "fn_savefree",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_gay3s7ifl": {
+      "id": "con_gay3s7ifl",
+      "from": {
+        "entity": "pg_avail",
+        "element": "pg_avail_e2"
+      },
+      "to": "set_prep",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_osf35sifl": {
+      "id": "con_osf35sifl",
+      "from": {
+        "entity": "pg_avail",
+        "element": "pg_avail_e3"
+      },
+      "to": "pg_share",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_d7loxaifl": {
+      "id": "con_d7loxaifl",
+      "from": {
+        "entity": "fn_savefree",
+        "element": null
+      },
+      "to": "dt_free",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_87jxssifl": {
+      "id": "con_87jxssifl",
+      "from": {
+        "entity": "pg_share",
+        "element": "pg_share_e1"
+      },
+      "to": "fn_sharelink",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_85t18fifl": {
+      "id": "con_85t18fifl",
+      "from": {
+        "entity": "pg_share",
+        "element": "pg_share_e2"
+      },
+      "to": "fn_stopshare",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_lfzod2ifl": {
+      "id": "con_lfzod2ifl",
+      "from": {
+        "entity": "fn_sharelink",
+        "element": null
+      },
+      "to": "dt_link",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_c8huaxifl": {
+      "id": "con_c8huaxifl",
+      "from": {
+        "entity": "fn_sharelink",
+        "element": null
+      },
+      "to": "set_hide",
+      "type": "reference",
+      "label": "Always applies",
+      "condition": ""
+    },
+    "con_3ivsl0ifl": {
+      "id": "con_3ivsl0ifl",
+      "from": {
+        "entity": "fn_sharelink",
+        "element": null
+      },
+      "to": "pg_sharedview",
+      "type": "navigate",
+      "label": "Partner opens link",
+      "condition": ""
+    },
+    "con_lzhehlifl": {
+      "id": "con_lzhehlifl",
+      "from": {
+        "entity": "fn_sharelink",
+        "element": null
+      },
+      "to": "pg_goodtogo",
+      "type": "navigate",
+      "label": "Partner's ready button",
+      "condition": ""
+    },
+    "con_871japifl": {
+      "id": "con_871japifl",
+      "from": {
+        "entity": "fn_stopshare",
+        "element": null
+      },
+      "to": "dt_link",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_e1plnkifl": {
+      "id": "con_e1plnkifl",
+      "from": {
+        "entity": "pg_sharedview",
+        "element": "pg_sharedview_e0"
+      },
+      "to": "fn_request",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_a8egvhifl": {
+      "id": "con_a8egvhifl",
+      "from": {
+        "entity": "fn_request",
+        "element": null
+      },
+      "to": "fn_alert",
+      "type": "notify",
+      "label": "",
+      "condition": ""
+    },
+    "con_88wy70ifl": {
+      "id": "con_88wy70ifl",
+      "from": {
+        "entity": "fn_request",
+        "element": null
+      },
+      "to": "pg_done",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_ssbi5gifl": {
+      "id": "con_ssbi5gifl",
+      "from": {
+        "entity": "fn_alert",
+        "element": null
+      },
+      "to": "set_discreet",
+      "type": "reference",
+      "label": "Checks",
+      "condition": ""
+    },
+    "con_m95u7lifl": {
+      "id": "con_m95u7lifl",
+      "from": {
+        "entity": "pg_settings",
+        "element": "pg_settings_e0"
+      },
+      "to": "set_lock",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_54mscxifl": {
+      "id": "con_54mscxifl",
+      "from": {
+        "entity": "pg_settings",
+        "element": "pg_settings_e1"
+      },
+      "to": "set_discreet",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_797phfifl": {
+      "id": "con_797phfifl",
+      "from": {
+        "entity": "pg_settings",
+        "element": "pg_settings_e2"
+      },
+      "to": "set_hide",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_xh8kncifl": {
+      "id": "con_xh8kncifl",
+      "from": {
+        "entity": "pg_settings",
+        "element": "pg_settings_e3"
+      },
+      "to": "set_health",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_5a9mslifl": {
+      "id": "con_5a9mslifl",
+      "from": {
+        "entity": "pg_settings",
+        "element": "pg_settings_e4"
+      },
+      "to": "pag_qiebee2vk",
+      "type": "back",
+      "label": "",
+      "condition": ""
+    },
+    "con_xkijcxifl": {
+      "id": "con_xkijcxifl",
+      "from": {
+        "entity": "fn_savemeet",
+        "element": null
+      },
+      "to": "dt_meet",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_5t2g92ifl": {
+      "id": "con_5t2g92ifl",
+      "from": {
+        "entity": "fn_savemeet",
+        "element": null
+      },
+      "to": "pg_oops",
+      "type": "error",
+      "label": "Failed",
+      "condition": ""
+    },
+    "con_hk2nqas8e": {
+      "id": "con_hk2nqas8e",
+      "from": {
+        "entity": "pg_review",
+        "element": "el_wgck0ns8e"
+      },
+      "to": "fun_flkwc1s8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_5ctipys8e": {
+      "id": "con_5ctipys8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "fun_mzsdlss8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_lzymods8e": {
+      "id": "con_lzymods8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "dt_person",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_ug86y2s8e": {
+      "id": "con_ug86y2s8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "dat_rer494s8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_2t9q22s8e": {
+      "id": "con_2t9q22s8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "dat_b3qlpus8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_fqe6jxs8e": {
+      "id": "con_fqe6jxs8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "set_ij06o1s8e",
+      "type": "reference",
+      "label": "Always applies",
+      "condition": ""
+    },
+    "con_gx9vkts8e": {
+      "id": "con_gx9vkts8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "pg_done",
+      "type": "navigate",
+      "label": "Saved",
+      "condition": ""
+    },
+    "con_uu4a69s8e": {
+      "id": "con_uu4a69s8e",
+      "from": {
+        "entity": "fun_flkwc1s8e",
+        "element": null
+      },
+      "to": "pg_oops",
+      "type": "error",
+      "label": "Failed",
+      "condition": ""
+    },
+    "con_fczfjbs8e": {
+      "id": "con_fczfjbs8e",
+      "from": {
+        "entity": "fun_mzsdlss8e",
+        "element": null
+      },
+      "to": "dat_b3qlpus8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_1fig78s8e": {
+      "id": "con_1fig78s8e",
+      "from": {
+        "entity": "fun_d1v65fs8e",
+        "element": null
+      },
+      "to": "dat_b3qlpus8e",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_g184uus8e": {
+      "id": "con_g184uus8e",
+      "from": {
+        "entity": "fun_d1v65fs8e",
+        "element": null
+      },
+      "to": "dt_person",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_vzvrj3s8e": {
+      "id": "con_vzvrj3s8e",
+      "from": {
+        "entity": "pg_person",
+        "element": "el_tsy88es8e"
+      },
+      "to": "pag_8wdsi3s8e",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_zp0wues8e": {
+      "id": "con_zp0wues8e",
+      "from": {
+        "entity": "pg_person",
+        "element": "el_yyk7z9s8e"
+      },
+      "to": "pag_vxvzpas8e",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_58obq9s8e": {
+      "id": "con_58obq9s8e",
+      "from": {
+        "entity": "pg_person",
+        "element": "el_11zs58s8e"
+      },
+      "to": "fun_d1v65fs8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_gobzyxs8f": {
+      "id": "con_gobzyxs8f",
+      "from": {
+        "entity": "pg_people",
+        "element": "el_lurzevs8e"
+      },
+      "to": "pag_43144as8e",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_qsxn4ss8f": {
+      "id": "con_qsxn4ss8f",
+      "from": {
+        "entity": "pag_8wdsi3s8e",
+        "element": null
+      },
+      "to": "dat_rer494s8e",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_ja1qvxs8f": {
+      "id": "con_ja1qvxs8f",
+      "from": {
+        "entity": "pag_8wdsi3s8e",
+        "element": "el_a4sh7zs8e"
+      },
+      "to": "pag_vxvzpas8e",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_ceeua7s8f": {
+      "id": "con_ceeua7s8f",
+      "from": {
+        "entity": "pag_43144as8e",
+        "element": null
+      },
+      "to": "dat_b3qlpus8e",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_mokmmfs8f": {
+      "id": "con_mokmmfs8f",
+      "from": {
+        "entity": "pag_vxvzpas8e",
+        "element": "el_gbyma6s8e"
+      },
+      "to": "fun_oiauuns8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_1ah2l1s8f": {
+      "id": "con_1ah2l1s8f",
+      "from": {
+        "entity": "fun_oiauuns8e",
+        "element": null
+      },
+      "to": "dec_ql9i2rs8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_g1b78zs8f": {
+      "id": "con_g1b78zs8f",
+      "from": {
+        "entity": "dec_ql9i2rs8e",
+        "element": null
+      },
+      "to": "set_ymaahns8e",
+      "type": "reference",
+      "label": "Checks",
+      "condition": ""
+    },
+    "con_5castss8f": {
+      "id": "con_5castss8f",
+      "from": {
+        "entity": "dec_ql9i2rs8e",
+        "element": null
+      },
+      "to": "fun_p1z2gjs8e",
+      "type": "condition",
+      "label": "Yes",
+      "condition": ""
+    },
+    "con_lijuzws8f": {
+      "id": "con_lijuzws8f",
+      "from": {
+        "entity": "dec_ql9i2rs8e",
+        "element": null
+      },
+      "to": "pag_vxvzpas8e",
+      "type": "condition",
+      "label": "No, stay on phone",
+      "condition": ""
+    },
+    "con_mxu9zms8f": {
+      "id": "con_mxu9zms8f",
+      "from": {
+        "entity": "pag_vxvzpas8e",
+        "element": "el_ch5bhbs8e"
+      },
+      "to": "pag_0rqyaus8e",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_8dafbgs8f": {
+      "id": "con_8dafbgs8f",
+      "from": {
+        "entity": "pag_0rqyaus8e",
+        "element": "el_4tcyc8s8e"
+      },
+      "to": "fun_wy5wifs8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_ij6pc3s8f": {
+      "id": "con_ij6pc3s8f",
+      "from": {
+        "entity": "fun_wy5wifs8e",
+        "element": null
+      },
+      "to": "dat_3ybseos8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_qm75vzs8f": {
+      "id": "con_qm75vzs8f",
+      "from": {
+        "entity": "fun_wy5wifs8e",
+        "element": null
+      },
+      "to": "dat_gzkej1s8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_xfdhkus8f": {
+      "id": "con_xfdhkus8f",
+      "from": {
+        "entity": "fun_p1z2gjs8e",
+        "element": null
+      },
+      "to": "dat_gzkej1s8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_hn92gts8f": {
+      "id": "con_hn92gts8f",
+      "from": {
+        "entity": "fun_p1z2gjs8e",
+        "element": null
+      },
+      "to": "pag_vxvzpas8e",
+      "type": "navigate",
+      "label": "Avatar ready",
+      "condition": ""
+    },
+    "con_f3dw0ks8f": {
+      "id": "con_f3dw0ks8f",
+      "from": {
+        "entity": "fun_p1z2gjs8e",
+        "element": null
+      },
+      "to": "pg_oops",
+      "type": "error",
+      "label": "Failed",
+      "condition": ""
+    },
+    "con_g87mebs8f": {
+      "id": "con_g87mebs8f",
+      "from": {
+        "entity": "pag_vxvzpas8e",
+        "element": "el_mevshjs8e"
+      },
+      "to": "dat_gzkej1s8e",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_1s6jc8dry": {
+      "id": "con_1s6jc8dry",
+      "from": {
+        "entity": "pg_settings",
+        "element": "el_l46y6adry"
+      },
+      "to": "pag_gsdilvdry",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_ttla7zdry": {
+      "id": "con_ttla7zdry",
+      "from": {
+        "entity": "pag_gsdilvdry",
+        "element": "el_ymout1dry"
+      },
+      "to": "set_lw0yfldry",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_dnxfvadry": {
+      "id": "con_dnxfvadry",
+      "from": {
+        "entity": "pag_gsdilvdry",
+        "element": "el_zwxitxdry"
+      },
+      "to": "set_b6zvqudry",
+      "type": "setting",
+      "label": "",
+      "condition": ""
+    },
+    "con_selk0jdry": {
+      "id": "con_selk0jdry",
+      "from": {
+        "entity": "pag_vxvzpas8e",
+        "element": "el_6e7edkdry"
+      },
+      "to": "fun_oiauuns8e",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_9il0iedry": {
+      "id": "con_9il0iedry",
+      "from": {
+        "entity": "fun_p1z2gjs8e",
+        "element": null
+      },
+      "to": "set_b6zvqudry",
+      "type": "reference",
+      "label": "Reads",
+      "condition": ""
+    },
+    "con_7zjqgcisx": {
+      "id": "con_7zjqgcisx",
+      "from": {
+        "entity": "pg_roster",
+        "element": "el_l95fkcisx"
+      },
+      "to": "pag_c9lr3pisx",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_rx7f44isx": {
+      "id": "con_rx7f44isx",
+      "from": {
+        "entity": "pag_c9lr3pisx",
+        "element": "el_byr6h7isx"
+      },
+      "to": "fun_vzg30wisx",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_e5tpj9isx": {
+      "id": "con_e5tpj9isx",
+      "from": {
+        "entity": "fun_vzg30wisx",
+        "element": null
+      },
+      "to": "dt_free",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_zh0jvjisx": {
+      "id": "con_zh0jvjisx",
+      "from": {
+        "entity": "fun_vzg30wisx",
+        "element": null
+      },
+      "to": "set_prep",
+      "type": "reference",
+      "label": "Reads",
+      "condition": ""
+    },
+    "con_4vq9iyisx": {
+      "id": "con_4vq9iyisx",
+      "from": {
+        "entity": "fun_vzg30wisx",
+        "element": null
+      },
+      "to": "dt_meet",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_sydf1kisx": {
+      "id": "con_sydf1kisx",
+      "from": {
+        "entity": "fun_vzg30wisx",
+        "element": null
+      },
+      "to": "pg_done",
+      "type": "navigate",
+      "label": "Saved",
+      "condition": ""
+    },
+    "con_tzcsxhisx": {
+      "id": "con_tzcsxhisx",
+      "from": {
+        "entity": "fun_vzg30wisx",
+        "element": null
+      },
+      "to": "pg_oops",
+      "type": "error",
+      "label": "Failed",
+      "condition": ""
+    },
+    "con_bfs00muj0": {
+      "id": "con_bfs00muj0",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "el_yx9j0kuj0"
+      },
+      "to": "pag_eznhi9uj0",
+      "type": "navigate",
+      "label": "",
+      "condition": ""
+    },
+    "con_6kq1i4uj0": {
+      "id": "con_6kq1i4uj0",
+      "from": {
+        "entity": "pag_eznhi9uj0",
+        "element": "el_e7livduj0"
+      },
+      "to": "fun_7twf5euj0",
+      "type": "trigger",
+      "label": "",
+      "condition": ""
+    },
+    "con_co9o78uj0": {
+      "id": "con_co9o78uj0",
+      "from": {
+        "entity": "fun_7twf5euj0",
+        "element": null
+      },
+      "to": "dat_sscj28uj0",
+      "type": "write",
+      "label": "",
+      "condition": ""
+    },
+    "con_jdkh9fuj0": {
+      "id": "con_jdkh9fuj0",
+      "from": {
+        "entity": "fun_7twf5euj0",
+        "element": null
+      },
+      "to": "set_prep",
+      "type": "reference",
+      "label": "Reads",
+      "condition": ""
+    },
+    "con_gjso7huj0": {
+      "id": "con_gjso7huj0",
+      "from": {
+        "entity": "fun_7twf5euj0",
+        "element": null
+      },
+      "to": "dt_free",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_tudbcsuj0": {
+      "id": "con_tudbcsuj0",
+      "from": {
+        "entity": "fun_7twf5euj0",
+        "element": null
+      },
+      "to": "pg_done",
+      "type": "navigate",
+      "label": "Saved",
+      "condition": ""
+    },
+    "con_y2njsguj0": {
+      "id": "con_y2njsguj0",
+      "from": {
+        "entity": "fun_7twf5euj0",
+        "element": null
+      },
+      "to": "pg_oops",
+      "type": "error",
+      "label": "Failed",
+      "condition": ""
+    },
+    "con_5a1h3wx3r": {
+      "id": "con_5a1h3wx3r",
+      "from": {
+        "entity": "pag_qiebee2vk",
+        "element": "pag_qiebee2vk_e0"
+      },
+      "to": "dt_meet",
+      "type": "read",
+      "label": "Today's meet-ups",
+      "condition": ""
+    },
+    "con_yogjm7x3r": {
+      "id": "con_yogjm7x3r",
+      "from": {
+        "entity": "pg_roster",
+        "element": "pg_roster_e0"
+      },
+      "to": "dt_meet",
+      "type": "read",
+      "label": "This week",
+      "condition": ""
+    },
+    "con_f331onx3r": {
+      "id": "con_f331onx3r",
+      "from": {
+        "entity": "pg_meet",
+        "element": "pg_meet_e1"
+      },
+      "to": "dt_meet",
+      "type": "read",
+      "label": "Prep plan",
+      "condition": ""
+    },
+    "con_zfn351x3r": {
+      "id": "con_zfn351x3r",
+      "from": {
+        "entity": "pg_review",
+        "element": "pg_review_e0"
+      },
+      "to": "dt_person",
+      "type": "read",
+      "label": "People list",
+      "condition": ""
+    },
+    "con_idoaicx3s": {
+      "id": "con_idoaicx3s",
+      "from": {
+        "entity": "pg_review",
+        "element": null
+      },
+      "to": "dt_shot",
+      "type": "read",
+      "label": "Found details",
+      "condition": ""
+    },
+    "con_vxkyvet7j": {
+      "id": "con_vxkyvet7j",
+      "from": {
+        "entity": "pg_plan",
+        "element": "pg_plan_e0"
+      },
+      "to": "dt_person",
+      "type": "read",
+      "label": "People list",
+      "condition": ""
+    },
+    "con_0gkw6vt7j": {
+      "id": "con_0gkw6vt7j",
+      "from": {
+        "entity": "pg_avail",
+        "element": "pg_avail_e0"
+      },
+      "to": "dt_free",
+      "type": "read",
+      "label": "Free times",
+      "condition": ""
+    },
+    "con_noiq8yt7j": {
+      "id": "con_noiq8yt7j",
+      "from": {
+        "entity": "pg_meet",
+        "element": "pg_meet_e2"
+      },
+      "to": "dt_ready",
+      "type": "read",
+      "label": "Ready status",
+      "condition": ""
+    },
+    "con_o2s9hst7k": {
+      "id": "con_o2s9hst7k",
+      "from": {
+        "entity": "pg_sharedview",
+        "element": "el_t5epr8t7k"
+      },
+      "to": "dt_free",
+      "type": "read",
+      "label": "Free or busy only",
+      "condition": ""
+    },
+    "con_jwop90mn2": {
+      "id": "con_jwop90mn2",
+      "from": {
+        "entity": "fun_kri6r0mn2",
+        "element": null
+      },
+      "to": "dt_meet",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_hcr08qmn2": {
+      "id": "con_hcr08qmn2",
+      "from": {
+        "entity": "fun_kri6r0mn2",
+        "element": null
+      },
+      "to": "dat_sscj28uj0",
+      "type": "read",
+      "label": "",
+      "condition": ""
+    },
+    "con_oe2i1imn2": {
+      "id": "con_oe2i1imn2",
+      "from": {
+        "entity": "fun_kri6r0mn2",
+        "element": null
+      },
+      "to": "fn_alert",
+      "type": "notify",
+      "label": "",
+      "condition": ""
+    },
+    "con_c52obpmn2": {
+      "id": "con_c52obpmn2",
+      "from": {
+        "entity": "fn_savemeet",
+        "element": null
+      },
+      "to": "fun_kri6r0mn2",
+      "type": "background",
+      "label": "Schedule reminder",
+      "condition": ""
+    },
+    "con_fqdsefmn2": {
+      "id": "con_fqdsefmn2",
+      "from": {
+        "entity": "fun_7twf5euj0",
+        "element": null
+      },
+      "to": "fun_kri6r0mn2",
+      "type": "background",
+      "label": "Schedule reminder",
+      "condition": ""
+    }
+  },
+  "startPageId": "pag_qiebee2vk",
+  "aiLog": [
+    {
+      "id": "ai_ifq92rs8h",
+      "at": 1795429478897,
+      "request": "Create a character function that, when I upload screenshots (especially for a new person), automatically extracts all information and builds a profile for that person. The profile should be stored locally on my device only, not in the cloud, and only I can access it unless I choose to share it. The app is primarily for my own viewing, though I can assign it to someone else who will never see the profile. The profile must include notes derived from the screenshots, such as the person’s broader profile, qualities, and any details mentioned in messages or images. It should also compile all images from the screenshots into an album attached to that profile for easy reference. If there are few or no real photos, provide a basic avatar creation tool similar to the Mathmate app,  it'll be very specifically stylistic and what I'm going to do is connect ChatGPT onto that aspect of the app so that it can be in charge of the creative side of the avatar creation. It can literally just take the images of that person or attributes and generate an almost cartoon version of that person with only the most memorable features or features specified by the person uploading the screenshots, or similarities to previous avatars. So it'll just draw from that for previous inspiration. It'll be almost like a generator that automatically simplifies a person's photos or Rick and Morty‑fies a person's photos, something like that. And it will be smart and because Grind obviously can have an explicit, it'll cover the explicit part of photos before sending it to Chatgpt, the way that say Facetune does when you try to upload an image to then try new clothes on the person, it'll just add clothes onto a person so that way when it enters the AI for modification, creation of a stylistic character type, it will not be registered as anything explicit because the last thing I want to do is upload nude photos, I want only covered‑up clothed images. allowing me to draw or describe features. Include an AI section where I can request adding custom features to the avatar that aren’t pre‑available, saving those features for that character or as templates for future avatars. Additionally, categorise all extracted features into categories (e.g., age, demographic, qualities) so I can later analyse the general demographics of people with specific attributes. Ensure all data is voluntarily provided to the AI for analysis and that no privacy is infringed. Also, if you don't want to save names, there should be an ability to save them as a nickname for the individual—whether that be a quality about them—and it can also recommend one based on the qualities it knows about this person.",
+      "scope": "app",
+      "options": [
+        "Full profile builder with album and avatar",
+        "Lighter: extend the existing person and review pages"
+      ],
+      "chosen": "Full profile builder with album and avatar",
+      "changes": 69,
+      "state": "applied"
+    },
+    {
+      "id": "ai_qmut4bdrz",
+      "at": 1795507375679,
+      "request": "Add two selectable UI themes\n\nA — Midnight Coral\n\n- Background: Near-black \"#0D0F12\"\n- Cards: Charcoal \"#222629\"\n- Accents: Coral \"#FF907B\"\n- Featured cards: Peach-to-coral gradients\n- Text: White \"#F7F5F3\"\n- Style: Minimal, sophisticated, discreet. Bold headings, rounded cards, subtle shadows and clean navigation.\n\nE — After Hours\n\n- Background: Deep purple \"#17091F\"\n- Cards: Dark violet \"#290D3B\"\n- Accents: Electric lime \"#DCFF40\"\n- Featured cards: Purple-pink gradients \"#C674F5\" → \"#E18AF9\"\n- Buttons: Lavender \"#EBB4FA\"\n- Text: White \"#FAF4FF\"\n- Style: Bold, playful, nightlife-inspired. Oversized headings, neon highlights, glowing accents and rounded cards.\n\nAdd both under Settings → Appearance → App Theme, with previews and persistent selection. Apply the selected design throughout ButtMate.\n\n2. AI Cartoon Avatar Maker\n\nExpand the existing Avatar Maker so users can upload photos and generate recognisable cartoon versions of themselves or other people whose photos they have permission to process.\n\nInclude 12 styles: Original Cartoon, Studio Ghibli, Bob's Burgers, Disney 2D, Hilda, Gravity Falls, Adventure Time, The Simpsons, South Park, Family Guy, Rick and Morty, Futurama.\n\nEach style must have genuinely distinct facial proportions, linework, shading and colours.\n\nFeatures:\n\n- Upload multiple reference photos.\n- Generate headshots or full-body characters.\n- Compare styles side by side.\n- Edit clothing, hair, pose and expression.\n- Preview, regenerate and save profile pictures.\n- Support transparent backgrounds.\n\n3. Global Cartoon Style\n\nAdd Settings → Appearance → Cartoon Avatar Style.\n\nSelecting one style must make every generated profile avatar throughout ButtMate use that same style, including People, Roster, Calendar and profile screens.\n\nFor example, selecting The Simpsons makes all saved people appear as Simpsons-inspired characters. Switching to Disney changes them all to Disney-inspired characters.\n\nPreserve each person's likeness and original photos. Cache generated styles for instant reuse. Keep this setting independent of the two UI themes.\n\n4. Implementation\n\nIntegrate an image-generation API such as OpenAI Images through a secure backend. Require permission for processing other people's photos.\n\nReuse existing ButtMate pages, components and data. Create and connect only missing functionality.",
+      "scope": "app",
+      "options": [
+        "Full build, reusing the Avatar Maker",
+        "Lean version: settings and style choice only"
+      ],
+      "chosen": "Lean version: settings and style choice only",
+      "changes": 14,
+      "state": "applied"
+    },
+    {
+      "id": "ai_evqcveisz",
+      "at": 1795530570227,
+      "request": "What's missing from this app?",
+      "scope": "app",
+      "options": [
+        "Plan several meet-ups at once",
+        "Add a partner routine and ready link",
+        "Add privacy and safety basics"
+      ],
+      "chosen": "Plan several meet-ups at once",
+      "changes": 13,
+      "state": "applied"
+    },
+    {
+      "id": "ai_g7kqmduj1",
+      "at": 1795530725389,
+      "request": "What's missing from this app?",
+      "scope": "app",
+      "options": [
+        "Add a partner routine",
+        "Add privacy and health reminders",
+        "Add a prep-start reminder"
+      ],
+      "chosen": "Add a partner routine",
+      "changes": 14,
+      "state": "applied"
+    },
+    {
+      "id": "ai_2vhy3yx3s",
+      "at": 1795530868696,
+      "request": "What's missing from this app?",
+      "scope": "app",
+      "options": [
+        "Show data on Home and Roster",
+        "Add a prep-start reminder",
+        "Add privacy and ready-status basics"
+      ],
+      "chosen": "Show data on Home and Roster",
+      "changes": 5,
+      "state": "applied"
+    },
+    {
+      "id": "ai_vz39ewt7k",
+      "at": 1795530956960,
+      "request": "What's missing from this app?",
+      "scope": "app",
+      "options": [
+        "Add a prep-start reminder",
+        "Connect the empty fields to your data",
+        "Send health check reminders"
+      ],
+      "chosen": "Connect the empty fields to your data",
+      "changes": 5,
+      "state": "applied"
+    },
+    {
+      "id": "ai_e3l3bvmn3",
+      "at": 1795531041759,
+      "request": "What's missing from this app?",
+      "scope": "app",
+      "options": [
+        "Add a prep-start reminder",
+        "Send health check reminders",
+        "Make ready status expire and connect it"
+      ],
+      "chosen": "Add a prep-start reminder",
+      "changes": 6,
+      "state": "applied"
+    }
+  ],
+  "comments": [],
+  "tasks": [],
+  "assets": [],
+  "savedSearches": [],
+  "activity": [
+    {
+      "at": 1795524944382,
+      "label": "Remove “New tab”"
+    },
+    {
+      "at": 1795524949715,
+      "label": "Switch card view"
+    },
+    {
+      "at": 1795524950493,
+      "label": "Switch card view"
+    },
+    {
+      "at": 1795525001332,
+      "label": "Add list item to “Check what was found”"
+    },
+    {
+      "at": 1795525003862,
+      "label": "Remove “New list item”"
+    },
+    {
+      "at": 1795525284257,
+      "label": "Edit text"
+    },
+    {
+      "at": 1795525302961,
+      "label": "Edit text"
+    },
+    {
+      "at": 1795529095295,
+      "label": "Tidy up layout",
+      "id": "act_0w1zkowqn",
+      "ch": [
+        {
+          "op": "edited",
+          "k": "setting",
+          "n": "App theme",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "edited",
+          "k": "setting",
+          "n": "Cartoon avatar style",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "edited",
+          "k": "page",
+          "n": "Appearance",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "moved",
+          "k": "card",
+          "n": "58 cards"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795530570227,
+      "label": "Smart Action: Plan several meet-ups at once",
+      "id": "act_m5kv2kisz",
+      "ch": [
+        {
+          "op": "added",
+          "k": "part",
+          "n": "Plan several",
+          "in": "Roster"
+        },
+        {
+          "op": "added",
+          "k": "function",
+          "n": "Plan several meet-ups"
+        },
+        {
+          "op": "added",
+          "k": "page",
+          "n": "Plan several"
+        },
+        {
+          "op": "connected",
+          "k": "navigate",
+          "n": "Roster › Plan several → Plan several"
+        },
+        {
+          "op": "connected",
+          "k": "trigger",
+          "n": "Plan several › Suggest a plan → Plan several meet-ups"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Plan several meet-ups → Free time"
+        },
+        {
+          "op": "connected",
+          "k": "reference",
+          "n": "Plan several meet-ups → Default prep time (Reads)"
+        },
+        {
+          "op": "connected",
+          "k": "write",
+          "n": "Plan several meet-ups → Meet-up"
+        },
+        {
+          "op": "connected",
+          "k": "navigate",
+          "n": "Plan several meet-ups → All set (Saved)"
+        },
+        {
+          "op": "connected",
+          "k": "error",
+          "n": "Plan several meet-ups → Something went wrong (Failed)"
+        }
+      ],
+      "src": "ai",
+      "why": "Adds the one-night-stand 'fleet' scheduler that fits meet-ups into your free times and adds hidden prep time, but it needs one new page and function.",
+      "req": "What's missing from this app?",
+      "title": "Plan several meet-ups at once"
+    },
+    {
+      "at": 1795530638652,
+      "label": "Tidy up layout",
+      "id": "act_2e7041zlo",
+      "ch": [
+        {
+          "op": "edited",
+          "k": "function",
+          "n": "Plan several meet-ups",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "edited",
+          "k": "page",
+          "n": "Plan several",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "moved",
+          "k": "card",
+          "n": "48 cards"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795530725389,
+      "label": "Smart Action: Add a partner routine",
+      "id": "act_mzmfomuj1",
+      "ch": [
+        {
+          "op": "added",
+          "k": "part",
+          "n": "Partner routine",
+          "in": "Home"
+        },
+        {
+          "op": "added",
+          "k": "data",
+          "n": "Partner routine"
+        },
+        {
+          "op": "added",
+          "k": "function",
+          "n": "Save partner routine"
+        },
+        {
+          "op": "added",
+          "k": "page",
+          "n": "Partner routine"
+        },
+        {
+          "op": "connected",
+          "k": "navigate",
+          "n": "Home › Partner routine → Partner routine"
+        },
+        {
+          "op": "connected",
+          "k": "trigger",
+          "n": "Partner routine › Save routine → Save partner routine"
+        },
+        {
+          "op": "connected",
+          "k": "write",
+          "n": "Save partner routine → Partner routine"
+        },
+        {
+          "op": "connected",
+          "k": "reference",
+          "n": "Save partner routine → Default prep time (Reads)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Save partner routine → Free time"
+        },
+        {
+          "op": "connected",
+          "k": "navigate",
+          "n": "Save partner routine → All set (Saved)"
+        },
+        {
+          "op": "connected",
+          "k": "error",
+          "n": "Save partner routine → Something went wrong (Failed)"
+        }
+      ],
+      "src": "ai",
+      "why": "Adds a repeating schedule for a monogamous partner, built on your existing prep time and ready link, but it does not touch privacy settings.",
+      "req": "What's missing from this app?",
+      "title": "Add a partner routine"
+    },
+    {
+      "at": 1795530741710,
+      "label": "Tidy up layout",
+      "id": "act_4pm5i874e",
+      "ch": [
+        {
+          "op": "edited",
+          "k": "data",
+          "n": "Partner routine",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "edited",
+          "k": "function",
+          "n": "Save partner routine",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "edited",
+          "k": "page",
+          "n": "Partner routine",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "moved",
+          "k": "card",
+          "n": "49 cards"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795530790669,
+      "label": "Add list item to “Home”",
+      "id": "act_3rg3n68wd",
+      "ch": [
+        {
+          "op": "added",
+          "k": "part",
+          "n": "New list item",
+          "in": "Home"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795530792225,
+      "label": "Remove “New list item”",
+      "id": "act_3p1o9ua3l",
+      "ch": [
+        {
+          "op": "removed",
+          "k": "part",
+          "n": "New list item",
+          "in": "Home"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795530868696,
+      "label": "Smart Action: Show data on Home and Roster",
+      "id": "act_ywu43yx3s",
+      "ch": [
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Home › Today's roster → Meet-up (Today's meet-ups)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Roster › This week → Meet-up (This week)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Meet-up › Prep plan (only me) → Meet-up (Prep plan)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Check what was found › Person → Person (People list)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Check what was found → Screenshot details (Found details)"
+        }
+      ],
+      "src": "ai",
+      "why": "Connects the empty sections to saved meet-ups so Today's roster, This week and the prep plan actually display things, but adds no new features.",
+      "req": "What's missing from this app?",
+      "title": "Show data on Home and Roster"
+    },
+    {
+      "at": 1795530956960,
+      "label": "Smart Action: Connect the empty fields to your data",
+      "id": "act_1totimt7k",
+      "ch": [
+        {
+          "op": "added",
+          "k": "part",
+          "n": "Free times",
+          "in": "Shared availability"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Plan a meet-up › Who → Person (People list)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "My availability › Free times → Free time (Free times)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Meet-up › Partner ready? → Ready status (Ready status)"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Shared availability › Free times → Free time (Free or busy only)"
+        }
+      ],
+      "src": "ai",
+      "why": "Makes existing pages actually show real people, free times and ready status instead of empty boxes, without adding new pages.",
+      "req": "What's missing from this app?",
+      "title": "Connect the empty fields to your data"
+    },
+    {
+      "at": 1795530973480,
+      "label": "Tidy up layout",
+      "id": "act_xzi9qa5yg",
+      "ch": [
+        {
+          "op": "moved",
+          "k": "card",
+          "n": "22 cards"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795531041759,
+      "label": "Smart Action: Add a prep-start reminder",
+      "id": "act_gvjlhtmn3",
+      "ch": [
+        {
+          "op": "added",
+          "k": "function",
+          "n": "Remind me to start prep"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Remind me to start prep → Meet-up"
+        },
+        {
+          "op": "connected",
+          "k": "read",
+          "n": "Remind me to start prep → Partner routine"
+        },
+        {
+          "op": "connected",
+          "k": "notify",
+          "n": "Remind me to start prep → Send discreet alert"
+        },
+        {
+          "op": "connected",
+          "k": "background",
+          "n": "Save meet-up → Remind me to start prep (Schedule reminder)"
+        },
+        {
+          "op": "connected",
+          "k": "background",
+          "n": "Save partner routine → Remind me to start prep (Schedule reminder)"
+        }
+      ],
+      "src": "ai",
+      "why": "Quietly nudges you when it's time to start prepping so you're never caught unready, at the cost of one more alert type.",
+      "req": "What's missing from this app?",
+      "title": "Add a prep-start reminder"
+    },
+    {
+      "at": 1795531108284,
+      "label": "Tidy up layout",
+      "id": "act_6wkb7m1z0",
+      "ch": [
+        {
+          "op": "edited",
+          "k": "function",
+          "n": "Remind me to start prep",
+          "f": [
+            "parentId"
+          ]
+        },
+        {
+          "op": "moved",
+          "k": "card",
+          "n": "58 cards"
+        }
+      ],
+      "src": "manual"
+    },
+    {
+      "at": 1795531110628,
+      "label": "Tidy up layout",
+      "id": "act_xuii9y3s4",
+      "ch": [
+        {
+          "op": "moved",
+          "k": "card",
+          "n": "57 cards"
+        }
+      ],
+      "src": "manual"
+    }
+  ],
+  "customStatuses": [],
+  "paths": [],
+  "palettes": {
+    "history": [],
+    "favourites": []
+  },
+  "docReviews": {},
+  "objectives": [],
+  "exportedAt": "2026-11-24T14:40:02.693Z"
+}

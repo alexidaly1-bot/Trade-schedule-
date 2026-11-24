@@ -1,0 +1,212 @@
+flowchart LR
+  subgraph mod_home["Home"]
+    pag_qiebee2vk["Home"]
+  end
+  subgraph mod_import["Screenshot import"]
+    pg_import["Add from screenshots"]
+    pg_review["Check what was found"]
+    fn_read("Read screenshots")
+    dt_shot[("Screenshot details")]
+  end
+  subgraph mod_roster["Roster"]
+    pg_roster["Roster"]
+    pg_plan["Plan a meet-up"]
+    pg_meet["Meet-up"]
+    fn_savemeet("Save meet-up")
+    fn_nextslot("Find the next free slot")
+    fn_cancel("Cancel meet-up")
+    dec_prep{"Enough prep time before it?"}
+    dt_meet[("Meet-up")]
+    fun_vzg30wisx("Plan several meet-ups")
+    pag_c9lr3pisx["Plan several"]
+    fun_kri6r0mn2("Remind me to start prep")
+  end
+  subgraph mod_people["People"]
+    pg_people["People"]
+    pg_person["Person"]
+    dt_person[("Person")]
+    set_ij06o1s8e[["Keep profiles on this device only"]]
+    dat_rer494s8e[("Profile album")]
+    dat_b3qlpus8e[("Person feature")]
+    fun_flkwc1s8e("Build profile")
+    fun_mzsdlss8e("Sort features into categories")
+    fun_d1v65fs8e("Suggest a nickname")
+    pag_8wdsi3s8e["Photo album"]
+    pag_43144as8e["Insights"]
+  end
+  subgraph mod_ready["Ready check"]
+    pg_goodtogo["I'm good to go"]
+    pg_ready["Ready!"]
+    fn_setready("Set ready status")
+    dec_ready{"Is my partner good to go?"}
+    dt_ready[("Ready status")]
+    dat_sscj28uj0[("Partner routine")]
+    fun_7twf5euj0("Save partner routine")
+    pag_eznhi9uj0["Partner routine"]
+  end
+  subgraph mod_avail["Availability & sharing"]
+    pg_avail["My availability"]
+    pg_share["Share my availability"]
+    pg_sharedview["Shared availability"]
+    fn_savefree("Save free time")
+    fn_sharelink("Create share link")
+    fn_stopshare("Stop sharing")
+    fn_request("Request a time")
+    dt_free[("Free time")]
+    dt_link[("Share link")]
+  end
+  subgraph mod_settings["Settings"]
+    pg_settings["Settings"]
+    set_lock[["App lock"]]
+    set_discreet[["Discreet alerts"]]
+    set_hide[["Hide private details when sharing"]]
+    set_prep[["Default prep time"]]
+    set_health[["Health check reminders"]]
+    set_lw0yfldry[["App theme"]]
+    set_b6zvqudry[["Cartoon avatar style"]]
+    pag_gsdilvdry["Appearance"]
+  end
+  subgraph mod_shared["Shared"]
+    pg_done["All set"]
+    pg_oops["Something went wrong"]
+    fn_alert("Send discreet alert")
+  end
+  subgraph mod_bs8iqus8e["Avatar studio"]
+    set_ymaahns8e[["Allow AI avatar help"]]
+    dat_gzkej1s8e[("Avatar")]
+    dat_3ybseos8e[("Feature template")]
+    fun_oiauuns8e("Cover private areas")
+    dec_ql9i2rs8e{"Safe to send to AI?"}
+    fun_p1z2gjs8e("Make cartoon avatar")
+    fun_wy5wifs8e("Add custom feature")
+    pag_vxvzpas8e["Avatar maker"]
+    pag_0rqyaus8e["Custom feature"]
+  end
+  pag_qiebee2vk -->|"Add from screenshots"| pg_import
+  pag_qiebee2vk -->|"Roster"| pg_roster
+  pag_qiebee2vk -->|"People"| pg_people
+  pag_qiebee2vk -->|"Partner ready check"| dec_ready
+  pag_qiebee2vk -->|"My availability"| pg_avail
+  pag_qiebee2vk -->|"Share my availability"| pg_share
+  pag_qiebee2vk -->|"Settings"| pg_settings
+  pg_import -->|"Pick screenshots"| fn_read
+  pg_import -->|"Read them"| fn_read
+  fn_read --> dt_shot
+  fn_read -->|"Found"| pg_review
+  fn_read -->|"Unreadable"| pg_oops
+  pg_review -->|"Save to roster"| fn_savemeet
+  pg_review -->|"Discard"| pag_qiebee2vk
+  pg_roster -->|"Meet-up"| pg_meet
+  pg_roster -->|"New meet-up"| pg_plan
+  pg_plan -->|"Save"| fn_savemeet
+  fn_savemeet -.->|"Reads"| set_prep
+  fn_savemeet --> dec_prep
+  dec_prep -.->|"Checks"| dt_meet
+  dec_prep -->|"Yes"| pg_done
+  dec_prep -->|"No"| fn_nextslot
+  fn_nextslot -.-> dt_free
+  fn_nextslot -->|"New time"| pg_plan
+  pg_done -->|"Back to roster"| pg_roster
+  pg_oops -->|"Try again: Return"| pag_qiebee2vk
+  pg_meet -->|"Reschedule"| fn_nextslot
+  pg_meet -->|"Cancel"| fn_cancel
+  fn_cancel --> dt_meet
+  fn_cancel --> fn_alert
+  pg_people -->|"Person"| pg_person
+  pg_people -->|"Add person: New"| pg_person
+  pg_person -->|"Plan a meet-up"| pg_plan
+  pg_person -->|"Send them a link"| fn_sharelink
+  pg_goodtogo -->|"I'm good to go"| fn_setready
+  pg_goodtogo -->|"Not today: Not ready"| fn_setready
+  fn_setready --> dt_ready
+  fn_setready --> fn_alert
+  dec_ready -.->|"Reads"| dt_ready
+  dec_ready -->|"Yes"| pg_ready
+  dec_ready -->|"Not yet"| pg_roster
+  pg_ready -->|"Open roster"| pg_roster
+  pg_avail -->|"Add free time"| fn_savefree
+  pg_avail -->|"Default prep time"| set_prep
+  pg_avail -->|"Share my availability"| pg_share
+  fn_savefree --> dt_free
+  pg_share -->|"Create link"| fn_sharelink
+  pg_share -->|"Stop sharing"| fn_stopshare
+  fn_sharelink --> dt_link
+  fn_sharelink -.->|"Always applies"| set_hide
+  fn_sharelink -->|"Partner opens link"| pg_sharedview
+  fn_sharelink -->|"Partner's ready button"| pg_goodtogo
+  fn_stopshare --> dt_link
+  pg_sharedview -->|"Free slot"| fn_request
+  fn_request --> fn_alert
+  fn_request --> pg_done
+  fn_alert -.->|"Checks"| set_discreet
+  pg_settings -->|"App lock"| set_lock
+  pg_settings -->|"Discreet alerts"| set_discreet
+  pg_settings -->|"Hide private details when sharing"| set_hide
+  pg_settings -->|"Health check reminders"| set_health
+  pg_settings -->|"Back to home"| pag_qiebee2vk
+  fn_savemeet --> dt_meet
+  fn_savemeet -->|"Failed"| pg_oops
+  pg_review -->|"Save profile"| fun_flkwc1s8e
+  fun_flkwc1s8e --> fun_mzsdlss8e
+  fun_flkwc1s8e --> dt_person
+  fun_flkwc1s8e --> dat_rer494s8e
+  fun_flkwc1s8e --> dat_b3qlpus8e
+  fun_flkwc1s8e -.->|"Always applies"| set_ij06o1s8e
+  fun_flkwc1s8e -->|"Saved"| pg_done
+  fun_flkwc1s8e -->|"Failed"| pg_oops
+  fun_mzsdlss8e --> dat_b3qlpus8e
+  fun_d1v65fs8e -.-> dat_b3qlpus8e
+  fun_d1v65fs8e --> dt_person
+  pg_person -->|"Photo album"| pag_8wdsi3s8e
+  pg_person -->|"Avatar"| pag_vxvzpas8e
+  pg_person -->|"Suggest a nickname"| fun_d1v65fs8e
+  pg_people -->|"Insights"| pag_43144as8e
+  pag_8wdsi3s8e -.-> dat_rer494s8e
+  pag_8wdsi3s8e -->|"Make avatar"| pag_vxvzpas8e
+  pag_43144as8e -.-> dat_b3qlpus8e
+  pag_vxvzpas8e -->|"Use covered photos"| fun_oiauuns8e
+  fun_oiauuns8e --> dec_ql9i2rs8e
+  dec_ql9i2rs8e -.->|"Checks"| set_ymaahns8e
+  dec_ql9i2rs8e -->|"Yes"| fun_p1z2gjs8e
+  dec_ql9i2rs8e -->|"No, stay on phone"| pag_vxvzpas8e
+  pag_vxvzpas8e -->|"Ask AI for a custom feature"| pag_0rqyaus8e
+  pag_0rqyaus8e -->|"Create it"| fun_wy5wifs8e
+  fun_wy5wifs8e --> dat_3ybseos8e
+  fun_wy5wifs8e --> dat_gzkej1s8e
+  fun_p1z2gjs8e --> dat_gzkej1s8e
+  fun_p1z2gjs8e -->|"Avatar ready"| pag_vxvzpas8e
+  fun_p1z2gjs8e -->|"Failed"| pg_oops
+  pag_vxvzpas8e -->|"Save avatar"| dat_gzkej1s8e
+  pg_settings -->|"Appearance"| pag_gsdilvdry
+  pag_gsdilvdry -->|"App theme"| set_lw0yfldry
+  pag_gsdilvdry -->|"Cartoon avatar style"| set_b6zvqudry
+  pag_vxvzpas8e -->|"Upload photos (permission required)"| fun_oiauuns8e
+  fun_p1z2gjs8e -.->|"Reads"| set_b6zvqudry
+  pg_roster -->|"Plan several"| pag_c9lr3pisx
+  pag_c9lr3pisx -->|"Suggest a plan"| fun_vzg30wisx
+  fun_vzg30wisx -.-> dt_free
+  fun_vzg30wisx -.->|"Reads"| set_prep
+  fun_vzg30wisx --> dt_meet
+  fun_vzg30wisx -->|"Saved"| pg_done
+  fun_vzg30wisx -->|"Failed"| pg_oops
+  pag_qiebee2vk -->|"Partner routine"| pag_eznhi9uj0
+  pag_eznhi9uj0 -->|"Save routine"| fun_7twf5euj0
+  fun_7twf5euj0 --> dat_sscj28uj0
+  fun_7twf5euj0 -.->|"Reads"| set_prep
+  fun_7twf5euj0 -.-> dt_free
+  fun_7twf5euj0 -->|"Saved"| pg_done
+  fun_7twf5euj0 -->|"Failed"| pg_oops
+  pag_qiebee2vk -.->|"Today's roster: Today's meet-ups"| dt_meet
+  pg_roster -.->|"This week: This week"| dt_meet
+  pg_meet -.->|"Prep plan (only me): Prep plan"| dt_meet
+  pg_review -.->|"Person: People list"| dt_person
+  pg_review -.->|"Found details"| dt_shot
+  pg_plan -.->|"Who: People list"| dt_person
+  pg_avail -.->|"Free times: Free times"| dt_free
+  pg_meet -.->|"Partner ready?: Ready status"| dt_ready
+  pg_sharedview -.->|"Free times: Free or busy only"| dt_free
+  fun_kri6r0mn2 -.-> dt_meet
+  fun_kri6r0mn2 -.-> dat_sscj28uj0
+  fun_kri6r0mn2 --> fn_alert
+  fn_savemeet -->|"Schedule reminder"| fun_kri6r0mn2
+  fun_7twf5euj0 -->|"Schedule reminder"| fun_kri6r0mn2
