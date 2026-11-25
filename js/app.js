@@ -41,7 +41,7 @@ async function imgURL(id) {
 }
 function photoEl(t, cls = '') {
   const initial = esc((t?.name || '?').trim()[0] || '?').toUpperCase();
-  const id = t?.mainPhotoId;
+  const id = t?.cartoonId || t?.mainPhotoId;
   if (!id) return `<span class="ph none ${cls}">${initial}</span>`;
   return `<span class="ph ${cls}" data-img="${id}"></span>`;
 }
@@ -496,6 +496,10 @@ async function openTrade(id) {
       <div class="stars" id="stars">${[1, 2, 3, 4, 5].map(n => `<button data-star="${n}" class="${(t.rating || 0) >= n ? 'on' : ''}" aria-label="${n} stars">★</button>`).join('')}</div>
     </div></div>
     <div class="row"><button class="primary" id="bookBtn">📅 Book</button><button id="moreBtn">+ Add screenshots / text</button>${t.phone ? `<a href="sms:${esc(t.phone)}"><button>💬 Text</button></a>` : ''}</div>
+    <div class="box"><h3>Cartoon</h3>
+      ${(t.cartoonIds || []).length ? `<div class="gallery">${t.cartoonIds.map(i => `<figure><img data-img="${i}" data-zoom="${i}" alt=""><div class="acts"><button data-cartoon="${i}">${t.cartoonId === i ? '★' : '☆'}</button><button data-delcart="${i}">🗑</button></div></figure>`).join('')}</div><p class="small">★ = shown as his pic everywhere.</p>` : '<p class="small">No cartoon yet. Tap “Make cartoon”, then add the cartoon Claude sends back.</p>'}
+      <div class="row"><button id="makeCartoon">🎨 Make cartoon</button><label class="filebtn">+ Add cartoon<input type="file" id="addCartoon" accept="image/*" multiple hidden></label></div>
+    </div>
     ${imgs.length ? `<div class="box"><h3>Pics</h3><div class="gallery">${imgs.map(([i, k]) => `<figure><img data-img="${i}" data-zoom="${i}" alt=""><div class="acts"><button data-main="${i}">${t.mainPhotoId === i ? '★' : '☆'}</button><button data-delimg="${i}">🗑</button></div></figure>`).join('')}</div></div>` : ''}
     <div class="box"><h3>Bookings</h3>${appts.length ? `<ul class="appt-list">${appts.map(a => `<li data-appt="${a.id}"><span>${fmtDay(new Date(a.start))} ${fmtTime(new Date(a.start))}${a.place ? ' · ' + esc(a.place) : ''}</span><span class="small">${a.status}</span></li>`).join('')}</ul>` : '<p class="small">None yet.</p>'}</div>
     <div class="box"><h3>Details</h3><div class="form" id="profForm">${fieldInputs(t)}<label class="full">Notes<textarea name="notes" rows="4">${esc(t.notes || '')}</textarea></label></div>
@@ -505,11 +509,20 @@ async function openTrade(id) {
   const body = $('#modalBody');
   $('#bookBtn').onclick = () => { const s = new Date(); s.setHours(20, 0, 0, 0); if (s < new Date()) s.setDate(s.getDate() + 1); quickBook(s); $('#qbWho').value = id; };
   $('#moreBtn').onclick = () => { closeModal(); clearAdd(); S.addFor = id; show('add'); };
+  $('#makeCartoon').onclick = () => makeCartoon(id);
+  $('#addCartoon').onchange = async e => {
+    t.cartoonIds ||= [];
+    for (const f of e.target.files) {
+      const cid = uid(); await db.put('images', { id: cid, tradeId: id, kind: 'cartoon', blob: await shrink(f) });
+      t.cartoonIds.push(cid); if (!t.cartoonId) t.cartoonId = cid;
+    }
+    await db.put('trades', t); refresh(); toast('Cartoon added — it’s his main pic now'); openTrade(id);
+  };
   $('#stars').onclick = async e => { const n = +e.target.dataset.star; if (!n) return; t.rating = t.rating === n ? 0 : n; await db.put('trades', t); openTrade(id); };
   $('#saveProf').onclick = async () => { Object.assign(t, readFields($('#profForm')), { notes: $('[name="notes"]', body).value, updated: Date.now() }); await db.put('trades', t); toast('Saved'); openTrade(id); refresh(); };
   $('#delTrade').onclick = async () => {
     if (!confirm(`Delete ${t.name || 'him'} and all his pics and bookings?`)) return;
-    for (const i of [...(t.photoIds || []), ...(t.shotIds || [])]) await db.del('images', i);
+    for (const i of [...(t.photoIds || []), ...(t.shotIds || []), ...(t.cartoonIds || [])]) await db.del('images', i);
     for (const a of appts) await db.del('appts', a.id);
     await db.del('trades', id);
     S.trades = S.trades.filter(x => x.id !== id); S.appts = S.appts.filter(a => a.tradeId !== id);
@@ -517,6 +530,13 @@ async function openTrade(id) {
   };
   body.onclick = async e => {
     const el = e.target;
+    if (el.dataset.cartoon) { t.cartoonId = el.dataset.cartoon; await db.put('trades', t); refresh(); return openTrade(id); }
+    if (el.dataset.delcart) {
+      const i = el.dataset.delcart; await db.del('images', i);
+      t.cartoonIds = (t.cartoonIds || []).filter(x => x !== i);
+      if (t.cartoonId === i) t.cartoonId = t.cartoonIds[0] || null;
+      await db.put('trades', t); refresh(); return openTrade(id);
+    }
     if (el.dataset.main) { t.mainPhotoId = el.dataset.main; await db.put('trades', t); refresh(); return openTrade(id); }
     if (el.dataset.delimg) {
       const i = el.dataset.delimg; await db.del('images', i);
@@ -558,6 +578,65 @@ function openAppt(id) {
   $('#aDel').onclick = async () => { await db.del('appts', id); S.appts = S.appts.filter(x => x.id !== id); closeModal(); refresh(); toast('Booking deleted'); };
 }
 
+// ---------- make cartoon ----------
+// Crops his pics on the phone (above the waist only), then hands them to Claude
+// with the chosen styles. Claude runs Higgsfield and sends the cartoons back.
+const STYLES = ['Family Guy', 'Futurama', 'South Park', 'The Simpsons', 'Rick and Morty', 'Clean TV cartoon', 'Studio Ghibli', 'Adventure Time', "Bob's Burgers"];
+function getPrefs() { try { return JSON.parse(localStorage.getItem('cartoonPrefs')) || {}; } catch { return {}; } }
+function setPrefs(p) { try { localStorage.setItem('cartoonPrefs', JSON.stringify(p)); } catch {} }
+function makeCartoon(id) {
+  const t = trade(id);
+  const pics = [...(t.photoIds || []), ...(t.shotIds || [])];
+  const prefs = getPrefs();
+  const chosen = prefs.styles || ['Family Guy'];
+  modal(`<div class="modal-head"><h2>Cartoon ${esc(t.name || 'him')}</h2><button class="icon" data-close>✕</button></div>
+    ${pics.length ? `<div class="box"><h3>1. Pics to use</h3><p class="hint">Tap to skip one. Only the part above his waist leaves your phone.</p>
+      <div class="thumbs" id="mcPics">${pics.map(i => `<figure class="pick" data-id="${i}"><img data-img="${i}" alt=""></figure>`).join('')}</div></div>`
+      : '<p class="hint">Add some screenshots to him first.</p>'}
+    <div class="box"><h3>2. Styles</h3><div class="form">${STYLES.map(s => `<label class="check"><input type="checkbox" value="${esc(s)}" ${chosen.includes(s) ? 'checked' : ''}>${esc(s)}</label>`).join('')}</div></div>
+    <div class="box"><h3>3. Outfit</h3><input id="mcOutfit" placeholder="e.g. black tee and jeans (blank = Claude picks)" value="${esc(prefs.outfit || '')}"></div>
+    <div class="row"><button class="primary" id="mcGo" ${pics.length ? '' : 'disabled'}>Crop &amp; send to Claude</button></div>
+    <div id="mcOut"></div>`);
+  $('#mcPics')?.addEventListener('click', e => { const f = e.target.closest('figure'); if (f) f.classList.toggle('pick'); });
+  $('#mcGo').onclick = async () => {
+    const styles = $$('#modalBody input[type=checkbox]:checked').map(c => c.value);
+    if (!styles.length) return toast('Pick at least one style');
+    const outfit = $('#mcOutfit').value.trim();
+    setPrefs({ styles, outfit });
+    const ids = $$('#mcPics figure.pick').map(f => f.dataset.id);
+    if (!ids.length) return toast('Pick at least one pic');
+    const btn = $('#mcGo'); btn.disabled = true;
+    const files = [];
+    try {
+      const { safeCrop } = await import('./person.js');
+      for (let n = 0; n < ids.length; n++) {
+        btn.textContent = `Finding him… ${n + 1}/${ids.length}` + (n === 0 ? ' (first time is slow)' : '');
+        try {
+          const rec = await db.get('images', ids[n]);
+          const r = await safeCrop(rec.blob);
+          if (r.ok) files.push(new File([r.blob], `${(t.name || 'him').replace(/\W+/g, '-')}-${n + 1}.jpg`, { type: 'image/jpeg' }));
+        } catch (err) { console.warn(err); }
+      }
+    } catch (err) { toast(err.message); }
+    btn.textContent = 'Crop & send to Claude'; btn.disabled = false;
+    if (!files.length) return toast('Couldn’t find a person in those pics');
+    const text = `Cartoon him: ${t.name || 'this guy'}. Styles: ${styles.join(', ')}. Outfit: ${outfit || 'your pick'}.`;
+    const urls = files.map(f => URL.createObjectURL(f));
+    $('#mcOut').innerHTML = `<div class="box"><h3>Ready: ${files.length} crop${files.length > 1 ? 's' : ''}</h3>
+      <div class="thumbs">${urls.map(u => `<figure><img src="${u}" alt=""></figure>`).join('')}</div>
+      <p class="hint">Check them, then send to Claude with this message:</p><pre class="raw">${esc(text)}</pre>
+      <div class="row"><button class="primary" id="mcShare">Share to Claude</button><button id="mcSave">Save crops</button><button id="mcCopy">Copy message</button></div>
+      <p class="small">When the cartoon comes back: his profile → “+ Add cartoon”.</p></div>`;
+    $('#mcShare').onclick = async () => {
+      if (navigator.canShare && navigator.canShare({ files })) {
+        try { await navigator.share({ files, text }); } catch {}
+      } else toast('Sharing not supported here — use Save crops + Copy message');
+    };
+    $('#mcSave').onclick = () => files.forEach((f, i) => { const a = document.createElement('a'); a.href = urls[i]; a.download = f.name; a.click(); });
+    $('#mcCopy').onclick = async () => { try { await navigator.clipboard.writeText(text); toast('Copied'); } catch { toast('Copy failed — select the text instead'); } };
+  };
+}
+
 // ---------- backup menu ----------
 $('#menuBtn').onclick = () => {
   modal(`<div class="modal-head"><h2>Backup</h2><button class="icon" data-close>✕</button></div>
@@ -569,6 +648,7 @@ $('#menuBtn').onclick = () => {
     const blob = new Blob([await exportAll()], { type: 'application/json' });
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
     a.download = 'trades-backup-' + new Date().toISOString().slice(0, 10) + '.json'; a.click();
+    try { localStorage.setItem('lastBackup', String(Date.now())); } catch {}
   };
   $('#impIn').onchange = async e => {
     const f = e.target.files[0]; if (!f) return;
@@ -592,6 +672,10 @@ setInterval(() => { if (S.view === 'schedule' && !drag) renderSchedule(); }, 600
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 
 await load();
+try {
+  const last = +localStorage.getItem('lastBackup') || 0;
+  if (S.trades.length && Date.now() - last > 7 * 864e5) setTimeout(() => toast('Tip: save a backup (⋯ top right)'), 1500);
+} catch {}
 lastDays = window.innerWidth < 700 ? 3 : 7;
 show('schedule');
 window.__app = { S, db };
