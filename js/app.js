@@ -1,6 +1,6 @@
 import { db, uid, exportAll, importAll } from './db.js';
 import { parseProfile, mergeProfile } from './parser.js';
-import { readText, findPhoto, shrink, warmUp as warmOcr } from './ocr.js';
+import { readText, findPhoto, shrink, warmUp as warmOcr, ocrBroken } from './ocr.js';
 
 // ---------- state ----------
 const S = { trades: [], appts: [], view: 'schedule', start: null, days: 7, addFor: null, pending: [] };
@@ -363,9 +363,12 @@ $('#readBtn').onclick = async () => {
   try {
     for (let i = 0; i < S.pending.length; i++) {
       const p = S.pending[i];
-      progress((i + .1) / (S.pending.length + .5), `Reading screenshot ${i + 1} of ${S.pending.length}…` + (i === 0 ? ' (first time takes a bit)' : ''));
+      progress((i + .1) / (S.pending.length + .5), ocrBroken() ? `Saving pic ${i + 1} of ${S.pending.length}…` : `Reading screenshot ${i + 1} of ${S.pending.length}…` + (i === 0 ? ' (max 20 sec first time)' : ''));
       let ocr = { text: '', words: [] };
-      try { ocr = await readText(p.blob); } catch (err) { console.warn(err); toast('Couldn’t read text: ' + err.message); }
+      if (!ocrBroken()) {
+        try { ocr = await readText(p.blob); }
+        catch (err) { console.warn(err); if (ocrBroken()) toast('Text reading isn’t working here — skipped it. Paste text or fill details in by hand.'); }
+      }
       result.texts.push(ocr.text);
       const crop = await findPhoto(p.blob, ocr.words).catch(() => null);
       result.shots.push({ id: p.id, blob: p.blob, url: p.url });

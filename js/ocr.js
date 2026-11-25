@@ -13,13 +13,20 @@ function loadScript(src) {
   });
 }
 
+// Gives up instead of hanging forever (some pages block the text reader's download).
+function timeout(p, ms, msg) {
+  return Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error(msg)), ms))]);
+}
+let broken = false;
+export const ocrBroken = () => broken;
 async function getWorker() {
+  if (broken) throw new Error('Text reader not available here');
   if (!workerP) {
-    workerP = (async () => {
+    workerP = timeout((async () => {
       await loadScript(TESS_URL);
       return window.Tesseract.createWorker('eng');
-    })();
-    workerP.catch(() => { workerP = null; });
+    })(), 20000, 'Text reader took too long to load');
+    workerP.catch(() => { workerP = null; broken = true; });
   }
   return workerP;
 }
@@ -47,7 +54,7 @@ export async function readText(blob) {
     c.getContext('2d').drawImage(img, 0, 0, c.width, c.height * 1);
     src = await new Promise(res => c.toBlob(res, 'image/png'));
   }
-  const { data } = await worker.recognize(src, {}, { text: true, blocks: true });
+  const { data } = await timeout(worker.recognize(src, {}, { text: true, blocks: true }), 30000, 'Reading took too long');
   const words = [], lines = [];
   for (const b of data.blocks || []) for (const p of b.paragraphs || []) for (const l of p.lines || []) {
     const ws = l.words || [];
