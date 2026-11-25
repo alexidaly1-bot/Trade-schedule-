@@ -1,6 +1,6 @@
 import { db, uid, exportAll, importAll } from './db.js';
 import { parseProfile, mergeProfile } from './parser.js';
-import { readText, findPhoto, shrink } from './ocr.js';
+import { readText, findPhoto, shrink, warmUp as warmOcr } from './ocr.js';
 
 // ---------- state ----------
 const S = { trades: [], appts: [], view: 'schedule', start: null, days: 7, addFor: null, pending: [] };
@@ -68,7 +68,7 @@ function show(view) {
   $$('.view').forEach(v => v.classList.toggle('on', v.id === 'view-' + view));
   if (view === 'schedule') renderSchedule();
   if (view === 'trades') renderTrades();
-  if (view === 'add') renderAdd();
+  if (view === 'add') { renderAdd(); warmOcr(); }
 }
 
 // ---------- schedule ----------
@@ -589,6 +589,7 @@ function makeCartoon(id) {
   const pics = [...(t.photoIds || []), ...(t.shotIds || [])];
   const prefs = getPrefs();
   const chosen = prefs.styles || ['Family Guy'];
+  import('./person.js').then(m => m.warmUp()).catch(() => {});
   modal(`<div class="modal-head"><h2>Cartoon ${esc(t.name || 'him')}</h2><button class="icon" data-close>✕</button></div>
     ${pics.length ? `<div class="box"><h3>1. Pics to use</h3><p class="hint">Tap to skip one. Only the part above his waist leaves your phone.</p>
       <div class="thumbs" id="mcPics">${pics.map(i => `<figure class="pick" data-id="${i}"><img data-img="${i}" alt=""></figure>`).join('')}</div></div>`

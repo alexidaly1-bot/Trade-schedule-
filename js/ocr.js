@@ -120,3 +120,6 @@ export async function shrink(blob, max = 1400) {
   c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
   return new Promise(res => c.toBlob(res, 'image/jpeg', 0.85));
 }
+
+// Start loading the text reader early so the first read is quicker.
+export function warmUp() { getWorker().catch(() => {}); }
