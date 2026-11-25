@@ -589,14 +589,13 @@ function makeCartoon(id) {
   const pics = [...(t.photoIds || []), ...(t.shotIds || [])];
   const prefs = getPrefs();
   const chosen = prefs.styles || ['Family Guy'];
-  import('./person.js').then(m => m.warmUp()).catch(() => {});
   modal(`<div class="modal-head"><h2>Cartoon ${esc(t.name || 'him')}</h2><button class="icon" data-close>✕</button></div>
-    ${pics.length ? `<div class="box"><h3>1. Pics to use</h3><p class="hint">Tap to skip one. Only the part above his waist leaves your phone.</p>
+    ${pics.length ? `<div class="box"><h3>1. Pics to use</h3><p class="hint">Tap to skip one. Crop them how you want before adding them.</p>
       <div class="thumbs" id="mcPics">${pics.map(i => `<figure class="pick" data-id="${i}"><img data-img="${i}" alt=""></figure>`).join('')}</div></div>`
       : '<p class="hint">Add some screenshots to him first.</p>'}
     <div class="box"><h3>2. Styles</h3><div class="form">${STYLES.map(s => `<label class="check"><input type="checkbox" value="${esc(s)}" ${chosen.includes(s) ? 'checked' : ''}>${esc(s)}</label>`).join('')}</div></div>
     <div class="box"><h3>3. Outfit</h3><input id="mcOutfit" placeholder="e.g. black tee and jeans (blank = Claude picks)" value="${esc(prefs.outfit || '')}"></div>
-    <div class="row"><button class="primary" id="mcGo" ${pics.length ? '' : 'disabled'}>Crop &amp; send to Claude</button></div>
+    <div class="row"><button class="primary" id="mcGo" ${pics.length ? '' : 'disabled'}>Send to Claude</button></div>
     <div id="mcOut"></div>`);
   $('#mcPics')?.addEventListener('click', e => { const f = e.target.closest('figure'); if (f) f.classList.toggle('pick'); });
   $('#mcGo').onclick = async () => {
@@ -608,30 +607,24 @@ function makeCartoon(id) {
     if (!ids.length) return toast('Pick at least one pic');
     const btn = $('#mcGo'); btn.disabled = true;
     const files = [];
-    try {
-      const { safeCrop } = await import('./person.js');
-      for (let n = 0; n < ids.length; n++) {
-        btn.textContent = `Finding him… ${n + 1}/${ids.length}` + (n === 0 ? ' (first time is slow)' : '');
-        try {
-          const rec = await db.get('images', ids[n]);
-          const r = await safeCrop(rec.blob);
-          if (r.ok) files.push(new File([r.blob], `${(t.name || 'him').replace(/\W+/g, '-')}-${n + 1}.jpg`, { type: 'image/jpeg' }));
-        } catch (err) { console.warn(err); }
-      }
-    } catch (err) { toast(err.message); }
-    btn.textContent = 'Crop & send to Claude'; btn.disabled = false;
-    if (!files.length) return toast('Couldn’t find a person in those pics');
+    // No analysing: send the pics exactly as you cropped them.
+    for (let n = 0; n < ids.length; n++) {
+      const rec = await db.get('images', ids[n]);
+      if (rec) files.push(new File([rec.blob], `${(t.name || 'him').replace(/\W+/g, '-')}-${n + 1}.jpg`, { type: rec.blob.type || 'image/jpeg' }));
+    }
+    btn.disabled = false;
+    if (!files.length) return toast('No pics found');
     const text = `Cartoon him: ${t.name || 'this guy'}. Styles: ${styles.join(', ')}. Outfit: ${outfit || 'your pick'}.`;
     const urls = files.map(f => URL.createObjectURL(f));
-    $('#mcOut').innerHTML = `<div class="box"><h3>Ready: ${files.length} crop${files.length > 1 ? 's' : ''}</h3>
+    $('#mcOut').innerHTML = `<div class="box"><h3>Ready: ${files.length} pic${files.length > 1 ? 's' : ''}</h3>
       <div class="thumbs">${urls.map(u => `<figure><img src="${u}" alt=""></figure>`).join('')}</div>
       <p class="hint">Check them, then send to Claude with this message:</p><pre class="raw">${esc(text)}</pre>
-      <div class="row"><button class="primary" id="mcShare">Share to Claude</button><button id="mcSave">Save crops</button><button id="mcCopy">Copy message</button></div>
+      <div class="row"><button class="primary" id="mcShare">Share to Claude</button><button id="mcSave">Save pics</button><button id="mcCopy">Copy message</button></div>
       <p class="small">When the cartoon comes back: his profile → “+ Add cartoon”.</p></div>`;
     $('#mcShare').onclick = async () => {
       if (navigator.canShare && navigator.canShare({ files })) {
         try { await navigator.share({ files, text }); } catch {}
-      } else toast('Sharing not supported here — use Save crops + Copy message');
+      } else toast('Sharing not supported here — use Save pics + Copy message');
     };
     $('#mcSave').onclick = () => files.forEach((f, i) => { const a = document.createElement('a'); a.href = urls[i]; a.download = f.name; a.click(); });
     $('#mcCopy').onclick = async () => { try { await navigator.clipboard.writeText(text); toast('Copied'); } catch { toast('Copy failed — select the text instead'); } };
