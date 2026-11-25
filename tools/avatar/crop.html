@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Person crop</title>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet@2.2.2/dist/posenet.min.js"></script>
+</head><body>
+<script>
+// Finds the person in a screenshot and crops to just them (runs locally, nothing uploaded).
+// window.cropPerson(dataUrl) -> { ok, score, box, dataUrl }
+let modelP;
+async function getModel() { return modelP ||= cocoSsd.load({ base: 'mobilenet_v2' }); }
+window.cropPerson = async (src) => {
+  const img = new Image(); img.src = src; await img.decode();
+  const W = img.naturalWidth, H = img.naturalHeight;
+  const model = await getModel();
+  const preds = (await model.detect(img, 10, 0.3)).filter(p => p.class === 'person');
+  if (!preds.length) return { ok: false };
+  // biggest person wins (the guy, not someone in the background)
+  preds.sort((a, b) => b.bbox[2] * b.bbox[3] - a.bbox[2] * a.bbox[3]);
+  let [x, y, w, h] = preds[0].bbox;
+  const pad = 0.06;
+  x = Math.max(0, x - w * pad); y = Math.max(0, y - h * pad);
+  w = Math.min(W - x, w * (1 + 2 * pad)); h = Math.min(H - y, h * (1 + 2 * pad));
+  const c = document.createElement('canvas');
+  c.width = Math.round(w); c.height = Math.round(h);
+  c.getContext('2d').drawImage(img, x, y, w, h, 0, 0, c.width, c.height);
+  return { ok: true, score: preds[0].score, box: [x, y, w, h].map(Math.round), areaFrac: (w * h) / (W * H), dataUrl: c.toDataURL('image/jpeg', 0.92) };
+};
+// Safe crop: keep only the body ABOVE THE HIPS, so no nudity below the waist ever
+// leaves the device. Uses a pose model to find the hips; falls back to a
+// conservative cut if it can't see them.
+let poseP;
+async function getPose() { return poseP ||= posenet.load({ architecture: 'ResNet50', outputStride: 16, inputResolution: 513, quantBytes: 2 }); }
+window.safeCrop = async (src) => {
+  const r = await window.cropPerson(src);
+  if (!r.ok) return r;
+  const img = new Image(); img.src = r.dataUrl; await img.decode();
+  const W = img.naturalWidth, H = img.naturalHeight;
+  const pose = await (await getPose()).estimateSinglePose(img, { flipHorizontal: false });
+  const kp = Object.fromEntries(pose.keypoints.map(k => [k.part, k]));
+  const ok = (k) => kp[k] && kp[k].score > 0.3;
+  let cut, how;
+  const hips = ['leftHip', 'rightHip'].filter(ok).map(k => kp[k].position.y);
+  const sh = ['leftShoulder', 'rightShoulder'].filter(ok).map(k => kp[k].position);
+  if (hips.length) { cut = Math.min(...hips) - H * 0.03; how = 'hips'; }
+  else if (sh.length === 2) {
+    const sw = Math.abs(sh[0].x - sh[1].x);
+    cut = Math.max(sh[0].y, sh[1].y) + sw * 1.0; how = 'shoulders';
+  } else { cut = H * 0.45; how = 'fallback'; }
+  // never cut lower than 60% of the person — belt and braces
+  cut = Math.max(H * 0.2, Math.min(cut, H * 0.6));
+  const c = document.createElement('canvas');
+  c.width = W; c.height = Math.round(cut);
+  c.getContext('2d').drawImage(img, 0, 0, W, cut, 0, 0, W, cut);
+  return { ...r, how, cutFrac: +(cut / H).toFixed(2), dataUrl: c.toDataURL('image/jpeg', 0.92) };
+};
+window.ready = true;
+</script></body></html>
